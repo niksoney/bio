@@ -1,10 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-    <title>Meu Primeiro Site</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução de Samambaias e Licófitas | [Seu Nome]</title>
+    <style>
+        /* Cores temáticas (verdes e neutros) */
+        :root {
+            --verde-escuro: #2E8B57;
+            --verde-claro: #3CB371;
+            --fundo-claro: #F5F5F5;
+            --texto-escuro: #333;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--fundo-claro);
+            color: var(--texto-escuro);
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--verde-escuro), var(--verde-claro));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: var(--verde-escuro);
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        footer {
+            background-color: var(--verde-escuro);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .destaque {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Olá, mundo!</h1>
-    <p>Feito por mim no GitHub Pages!</p>
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Evolução de Samambaias e Licófitas</h1>
+        <p>Pesquisa de Doutorado | [Seu Nome] | [Sua Universidade]</p>
+    </header>
+    
+    <!-- Menu de Navegação -->
+    <nav>
+        <a href="#sobre">Sobre</a>
+        <a href="#pesquisa">Pesquisa</a>
+        <a href="#publicacoes">Publicações</a>
+        <a href="#contato">Contato</a>
+    </nav>
+    
+    <!-- Conteúdo Principal -->
+    <section id="sobre" class="destaque">
+        <h2>Sobre o Projeto</h2>
+        <p>Esta pesquisa investiga a evolução das samambaias e licófitas, abordando [adicione um resumo breve do seu trabalho].</p>
+        <img src="https://via.placeholder.com/800x400?text=Imagem+de+Samambaias" alt="Samambaias">
+    </section>
+    
+    <section id="pesquisa">
+        <h2>Metodologia</h2>
+        <p>Detalhe aqui sua metodologia de pesquisa, técnicas utilizadas, etc.</p>
+    </section>
+    
+    <section id="publicacoes" class="destaque">
+        <h2>Publicações</h2>
+        <ul>
+            <li>[Título da Publicação 1] - <em>Revista Científica, 2023</em></li>
+            <li>[Título da Publicação 2] - <em>Revista Científica, 2022</em></li>
+        </ul>
+    </section>
+    
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Email: <a href="mailto:seu-email@universidade.edu">seu-email@universidade.edu</a></p>
+        <p>ORCID: [Seu ORCID]</p>
+        <p>Lattes: <a href="[Link Lattes]">[Seu Lattes]</a></p>
+    </section>
+    
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2023 [Seu Nome]. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>
