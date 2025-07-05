@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evolução de Samambaias e Licófitas | [Seu Nome]</title>
+    <title>Evolução de Samambaias e Licófitas | Niksoney A. Mendonça</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Cores temáticas (verdes e neutros) */
         :root {
             --verde-escuro: #2E8B57;
             --verde-claro: #3CB371;
@@ -23,16 +23,50 @@
         }
         
         header {
-            background: linear-gradient(135deg, var(--verde-escuro), var(--verde-claro));
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('imagens/samambaia-bg.jpg') center/cover no-repeat;
             color: white;
-            padding: 2rem;
+            padding: 3rem 2rem;
             text-align: center;
+            position: relative;
+        }
+        
+        .profile {
+            margin: 0 auto;
+            text-align: center;
+            padding: 20px 0;
+            background-color: rgba(0,0,0,0.6);
+            border-radius: 15px;
+            max-width: 600px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .welcome-message {
+            background-color: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 800px;
+            font-style: italic;
+            backdrop-filter: blur(5px);
         }
         
         nav {
             background-color: var(--verde-escuro);
             padding: 1rem;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         nav a {
@@ -40,6 +74,13 @@
             margin: 0 15px;
             text-decoration: none;
             font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
         }
         
         section {
@@ -48,74 +89,288 @@
             margin: 0 auto;
         }
         
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        .social-interaction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .like-container, .comment-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .like-btn, .comment-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .like-btn {
+            background-color: #FF6B6B;
+            color: white;
+        }
+        
+        .like-btn:hover {
+            background-color: #ff5252;
+            transform: scale(1.05);
+        }
+        
+        .comment-btn {
+            background-color: #4ECDC4;
+            color: white;
+        }
+        
+        .comment-btn:hover {
+            background-color: #3dbeb5;
+            transform: scale(1.05);
+        }
+        
+        .comment-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: none;
+        }
+        
+        .comment-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .comment-section button {
+            background-color: var(--verde-escuro);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .comment-section button:hover {
+            background-color: #1e6b46;
+        }
+        
         footer {
             background-color: var(--verde-escuro);
             color: white;
             text-align: center;
-            padding: 1rem;
+            padding: 2rem;
             margin-top: 2rem;
         }
         
-        .destaque {
-            background-color: white;
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 24px;
+            transition: transform 0.3s;
+        }
+        
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+        
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .profile {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Cabeçalho -->
+    <!-- Cabeçalho com foto -->
     <header>
-        <h1>Evolução de Samambaias e Licófitas</h1>
-        <p>Pesquisa de Doutorado | [Seu Nome] | [Sua Universidade]</p>
+        <div class="profile">
+            <img src="imagens/perfil.png" alt="Niksoney A. Mendonça" class="profile-img">
+            <h2>Niksoney A. Mendonça | Doutorando em Biologia Vegetal</h2>
+        </div>
+        
+        <div class="welcome-message">
+            <p>Bem-vindo, amigo! Este é o site de um doutorando em Ecologia Molecular com tutoriais de R, pipelines de bioinformática e pesquisas sobre evolução de samambaias e licófitas.</p>
+        </div>
     </header>
     
     <!-- Menu de Navegação -->
     <nav>
         <a href="#sobre">Sobre</a>
         <a href="#pesquisa">Pesquisa</a>
-        <a href="#publicacoes">Publicações</a>
+        <a href="#projetos">Projetos</a>
+        <a href="#tutoriais">Tutoriais</a>
         <a href="#contato">Contato</a>
     </nav>
     
-    <!-- Conteúdo Principal -->
-    <section id="sobre" class="destaque">
-        <h2>Sobre o Projeto</h2>
-        <p>Esta pesquisa investiga a evolução das samambaias e licófitas, abordando [adicione um resumo breve do seu trabalho].</p>
-        <img src="https://via.placeholder.com/800x400?text=Imagem+de+Samambaias" alt="Samambaias">
+    <!-- Seção Sobre -->
+    <section id="sobre">
+        <h2>Sobre Mim</h2>
+        <p>Doutorando em Biologia Vegetal na Universidade Federal de Pernambuco, com foco em evolução de samambaias e licófitas utilizando ferramentas de bioinformática e ecologia molecular. Minha pesquisa combina abordagens moleculares e morfológicas para entender os padrões evolutivos nestes grupos de plantas.</p>
     </section>
     
-    <section id="pesquisa">
-        <h2>Metodologia</h2>
-        <p>Detalhe aqui sua metodologia de pesquisa, técnicas utilizadas, etc.</p>
+    <!-- Seção Projetos -->
+    <section id="projetos">
+        <h2>Projetos Recentes</h2>
+        
+        <div class="project-card">
+            <h3>Análise Filogenética de Samambaias</h3>
+            <p>Desenvolvimento de pipeline para análise de sequências de DNA utilizando ferramentas de bioinformática como BLAST, MAFFT e RAxML.</p>
+            <a href="#">Ver detalhes</a>
+        </div>
+        
+        <div class="project-card">
+            <h3>Tutoriais de R para Biologia</h3>
+            <p>Série de tutoriais sobre análises estatísticas em ecologia, incluindo análises de diversidade, modelos lineares e visualização de dados científicos.</p>
+            <a href="#">Acessar tutoriais</a>
+        </div>
+        
+        <!-- Interação Social -->
+        <div class="social-interaction">
+            <div class="like-container">
+                <button class="like-btn">
+                    <i class="fas fa-heart"></i> Curtir
+                </button>
+                <span id="likeCount">0</span>
+            </div>
+            
+            <button class="comment-btn">
+                <i class="fas fa-comment"></i> Comentar
+            </button>
+            
+            <div class="comment-section" id="commentSection">
+                <textarea placeholder="Deixe seu comentário..." rows="3"></textarea>
+                <button>Enviar <i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
     </section>
     
-    <section id="publicacoes" class="destaque">
-        <h2>Publicações</h2>
-        <ul>
-            <li>[Título da Publicação 1] - <em>Revista Científica, 2023</em></li>
-            <li>[Título da Publicação 2] - <em>Revista Científica, 2022</em></li>
-        </ul>
+    <!-- Seção Tutoriais -->
+    <section id="tutoriais">
+        <h2>Tutoriais de R e Bioinformática</h2>
+        <div class="project-card">
+            <ul>
+                <li><a href="#"><i class="fas fa-link"></i> Análise de dados ecológicos no R</a></li>
+                <li><a href="#"><i class="fas fa-link"></i> Pipeline básico de análise de NGS</a></li>
+                <li><a href="#"><i class="fas fa-link"></i> Visualização de dados científicos com ggplot2</a></li>
+            </ul>
+        </div>
     </section>
     
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Email: <a href="mailto:seu-email@universidade.edu">seu-email@universidade.edu</a></p>
-        <p>ORCID: [Seu ORCID]</p>
-        <p>Lattes: <a href="[Link Lattes]">[Seu Lattes]</a></p>
-    </section>
+ <!-- Seção Contato -->
+<section id="contato">
+    <h2>Contato</h2>
+    <div class="project-card">
+        <form action="https://formsubmit.co/niksoney.azevedo@ufpe.br" method="POST">
+            <!-- Adicione este campo hidden para evitar spam -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <div style="margin-bottom: 15px;">
+                <label for="nome">Seu Nome:</label>
+                <input type="text" id="nome" name="name" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="email">Seu Email:</label>
+                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="message" rows="4" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+            
+            <input type="hidden" name="_next" value="https://niksoney.github.io/meusite/obrigado.html">
+            <button type="submit" style="background-color: var(--verde-escuro); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                <i class="fas fa-paper-plane"></i> Enviar Mensagem
+            </button>
+        </form>
+    </div>
+</section>
     
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2023 [Seu Nome]. Todos os direitos reservados.</p>
-    </footer>
+ <!-- Rodapé -->
+<footer>
+    <div class="footer-content" style="padding: 0.5rem 0;">
+        <p style="margin: 0.3rem 0;">&copy; 2025 Niksoney Azevedo Mendonça. Todos os direitos reservados.</p>
+        
+        <div class="social-icons" style="margin: 0.5rem 0;">
+            <a href="mailto:niksoney.azevedo@ufpe.br" title="Email"><i class="fas fa-envelope"></i></a>
+            <a href="[SEU-LINK-LATTES]" title="Lattes"><i class="fas fa-graduation-cap"></i></a>
+            <a href="[SEU-LINK-ORCID]" title="ORCID"><i class="fab fa-orcid"></i></a>
+            <a href="[SEU-LINK-RESEARCHGATE]" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+            <a href="[SEU-LINK-WHATSAPP]" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://github.com/seu-usuario" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+    <script>
+        // Script para a seção de comentários
+        document.querySelector('.comment-btn').addEventListener('click', function() {
+            const commentSection = document.getElementById('commentSection');
+            commentSection.style.display = commentSection.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        // Contador de curtidas
+        let likeCount = 0;
+        const likeBtn = document.querySelector('.like-btn');
+        const likeCountElement = document.getElementById('likeCount');
+        
+        likeBtn.addEventListener('click', function() {
+            likeCount++;
+            likeCountElement.textContent = likeCount;
+            this.innerHTML = `<i class="fas fa-heart"></i> Curtido`;
+            this.style.backgroundColor = '#ff5252';
+        });
+    </script>
 </body>
 </html>
