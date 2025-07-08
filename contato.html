@@ -121,19 +121,21 @@
         
         /* Estilos para a galeria */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
         
         .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+             height: 220px; /* Mantém a altura fixa */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
         
         .gallery-item:hover {
             transform: scale(1.03);
@@ -141,11 +143,10 @@
         
         .gallery-item img {
             width: 100%;
-    height: 100%;
-    object-fit: cover; /* Isso fará a imagem cobrir todo o espaço mantendo proporções */
-    object-position: center; /* Centraliza a imagem no espaço disponível */
-    transition: transform 0.5s;
-}
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
         
         .gallery-item:hover img {
             transform: scale(1.1);
@@ -388,20 +389,7 @@
     </style>
 </head>
 <body>
-    <!-- Cabeçalho com foto -->
-    <header>
-        <div class="profile">
-            <img src="imagens/perfil.png" alt="Niksoney A. Mendonça" class="profile-img">
-            <h2>Niksoney Azevedo Mendonça</h2>
-            <h2>PhD student in Plant Biology</h2>
-        </div>
-        
-        <div class="welcome-message">
-            <p>Welcome, friend! This is the website of a PhD student in Plant Biology and a fern lover. A curious researcher and always looking for new partnerships, here I will help you with some R tutorials, bioinformatics pipelines and research on the evolution of ferns and lycophytes.</p>
-    </header>
-    
-    <!-- Menu de Navegação -->
-<nav>
+    <nav>
     <a href="index.html#sobre">About me</a>
     <a href="index.html#projetos">Projects and collaborations</a>
     <a href="index.html#curriculo">Curriculum</a>
@@ -409,56 +397,46 @@
     <a href="tutoriais.html">Bioinformatics tutorials</a>
     <a href="contato.html">Contact</a>
 </nav>
-    
-    <!-- Seção Sobre -->
-    <section id="sobre">
-        <h2>About me</h2>
-        <p>Full degree in biological sciences from the Federal University of Maranhão (UFMA, 2022). As an undergraduate researcher (PIBIC-UFMA 2020-2021), I worked on the "Maintenance and Computerization of the Vascular Plants Collection" project, focusing on the taxonomy of Cerrado ferns and lycophytes in conservation areas. In 2025, I completed my MSc in Plant Biology at the Federal University of Pernambuco (UFPE), where I studied the genus <em>Microgramma</em> (Scaly Clade) using morphometrics and near-infrared spectroscopy to improve species delimitation. Currently, as a PhD candidate in Plant Biology (UFPE), I investigate leaf dimorphism evolution in <em>Microgramma</em>, integrating phylogenomics, transcriptomics, and morphological evolution to understand the diversification mechanisms in this group.</p>
-    </section>
-    
-    <!-- Seção Projetos -->
-    <section id="projetos">
-        <h2>Projects and collaborations</h2>
-        
-        <div class="project-card">
-            <h3>Dinâmica da exploração do espaço fenotípico em samambaias e licófitas (2022 - Atual)</h3>
-            <p><strong>Situação:</strong> Em andamento | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Investigamos a ocupação do espaço fenotípico e ambiental em linhagens de samambaias e licófitas utilizando dados morfométricos, espectrais (infravermelho próximo) e ambientais, combinados com inferências filogenéticas obtidas por sequenciamento massivo de DNA.</p>
-            <p><strong>Integrantes:</strong> Thais Elias Almeida (Coordenadora), Niksoney Azevedo Mendonça, Augusto César Pessôa Santiago, Marise Helen Vale de Oliveira, Carolina do Valle Monteiro Sousa, Keven dos Santos Lima.</p>
+
+    <!-- Seção Contato -->
+<section id="index.contato">
+    <h2>Contact</h2>
+    <div class="project-card" style="display: flex; gap: 30px; align-items: center;">
+        <!-- Formulário (mantido igual) -->
+        <form action="https://formsubmit.co/niksoney.azevedo@ufpe.br" method="POST" style="flex: 1;">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <div style="margin-bottom: 15px;">
+                <label for="nome">Your name:</label>
+                <input type="text" id="nome" name="name" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="email">Your email:</label>
+                <input type="email" id="email" name="email" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+            </div>
+            
+            <div style="margin-bottom: 15px;">
+                <label for="mensagem">Message:</label>
+                <textarea id="mensagem" name="message" rows="4" required style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;"></textarea>
+            </div>
+            
+            <input type="hidden" name="_next" value="https://niksoney.github.io/meusite/obrigado.html">
+            <button type="submit" style="background-color: var(--verde-escuro); color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                <i class="fas fa-paper-plane"></i> Send message
+            </button>
+        </form>
+       
+        <!-- Nova imagem adicionada -->
+        <div style="flex: 1; text-align: center;">
+            <img src="imagens/contracapa.jpg" alt="Contact illustration" 
+                 style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+            <p style="margin-top: 10px; color: #2E8B57;">I would love to hear from you!</p>
         </div>
-        
-        <div class="project-card">
-            <h3>Curadoria e conservação do Herbário CCAA (2024 - Atual)</h3>
-            <p><strong>Situação:</strong> Em andamento | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Projeto de manutenção e ampliação do acervo do Herbário CCAA (UFMA-Chapadinha), que conta com cerca de 2.100 amostras, incluindo 946 samambaias e 106 licófitas. O objetivo é documentar a diversidade vegetal do Maranhão, com ênfase na região do Cerrado, e disponibilizar os dados para a comunidade científica.</p>
-            <p><strong>Integrantes:</strong> Rozijane Santos Fernandes (Coordenadora), Niksoney Azevedo Mendonça, Maria da Conceição de Carvalho Bastos, Sirlane Santos Oliveira, Vanessa Fernandes Ferreira, Pedro Henrique Castro Aguiar, Jainara Pereira Silva, José Augusto dos Santos Silva, Francimária Vasconcelos Carvalho, Carla Denise de Sousa Araújo, Lailze Sousa Monteles, Lazaro Nikael Araujo Oliveira, Vinicius Lima Sampaio.</p>
-        </div>
-        
-        <div class="project-card">
-            <h3>Curadoria e conservação do Herbário CCAA (2022 - 2024)</h3>
-            <p><strong>Situação:</strong> Concluído | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Projeto anterior de curadoria que consolidou o Herbário CCAA como patrimônio institucional, organizando cerca de 2.100 amostras botânicas (incluindo 946 samambaias) em banco de dados e estabelecendo protocolos de conservação.</p>
-            <p><strong>Integrantes:</strong> Rozijane Santos Fernandes (Coordenadora), Niksoney Azevedo Mendonça, Maria da Conceição de Carvalho Bastos, Sirlane Santos Oliveira, Frácimaria V. Carvalho, Pedro Henrique Castro Aguiar, Jainara Pereira Silva.</p>
-        </div>
-    </section>
-    
-   <!-- Seção Currículo -->
-<section id="curriculo">
-    <h2>Curriculum Vitae</h2>
-    <div class="project-card" style="text-align: center; padding: 2rem;">
-        <h3 style="margin-bottom: 1.5rem;">Meu currículo completo está disponível na Plataforma Lattes</h3>
-        <a href="http://lattes.cnpq.br/3437999134934422" target="_blank" 
-           style="background-color: var(--verde-escuro); color: white; padding: 12px 24px; 
-                  border-radius: 5px; text-decoration: none; display: inline-block;
-                  transition: background-color 0.3s; font-weight: bold;">
-            <i class="fas fa-external-link-alt"></i> Acessar Currículo Lattes
-        </a>
-        <p style="margin-top: 1.5rem; font-style: italic;">
-            Todas as informações acadêmicas e profissionais atualizadas
-        </p>
     </div>
 </section>
-    
+
     <!-- Rodapé -->
     <footer>
         <div class="footer-content" style="padding: 0.5rem 0;">
@@ -475,25 +453,3 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Script para a seção de comentários
-        document.querySelector('.comment-btn').addEventListener('click', function() {
-            const commentSection = document.getElementById('commentSection');
-            commentSection.style.display = commentSection.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        // Contador de curtidas
-        let likeCount = 0;
-        const likeBtn = document.querySelector('.like-btn');
-        const likeCountElement = document.getElementById('likeCount');
-        
-        likeBtn.addEventListener('click', function() {
-            likeCount++;
-            likeCountElement.textContent = likeCount;
-            this.innerHTML = `<i class="fas fa-heart"></i> Curtido`;
-            this.style.backgroundColor = '#ff5252';
-        });
-    </script>
-</body>
-</html>
