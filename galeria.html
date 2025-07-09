@@ -150,36 +150,62 @@
     }
 
     /* Estilo da barra de pesquisa */
-    .search-bar {
-      position: relative;
-      margin: 20px auto 30px;
-      max-width: 500px;
-    }
+  /* BARRA DE PESQUISA - ESTILOS CORRIGIDOS */
+.search-bar {
+  position: relative;
+  margin: 20px auto 30px;
+  max-width: 500px;
+  width: 90%; /* Adicionado para melhor responsividade */
+}
 
-    .search-bar input {
-      width: 100%;
-      padding: 12px 20px;
-      padding-left: 40px;
-      border: 2px solid var(--verde-claro);
-      border-radius: 30px;
-      font-size: 16px;
-      outline: none;
-      transition: all 0.3s;
-    }
+.search-bar input {
+  width: 100%;
+  padding: 12px 15px 12px 40px; /* Padronizado o padding */
+  border: 2px solid var(--verde-claro);
+  border-radius: 30px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s;
+  box-sizing: border-box; /* Importante para cálculo correto do tamanho */
+}
 
-    .search-bar input:focus {
-      border-color: var(--verde-escuro);
-      box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
-    }
+.search-bar .fa-search {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--verde-escuro);
+  font-size: 16px; /* Tamanho fixo inicial */
+  pointer-events: none;
+}
 
-    .search-bar .fa-search {
-      position: absolute;
-      left: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--verde-escuro);
-    }
+/* RESPONSIVIDADE - AJUSTES ESPECÍFICOS */
+@media (max-width: 768px) {
+  .search-bar {
+    max-width: 400px;
+  }
+  
+  .search-bar input {
+    padding: 10px 15px 10px 36px; /* Padding reduzido proporcionalmente */
+    font-size: 14px;
+  }
+  
+  .search-bar .fa-search {
+    left: 13px;
+    font-size: 14px; /* Ícone reduzido proporcionalmente */
+  }
+}
 
+@media (max-width: 480px) {
+  .search-bar input {
+    padding: 8px 12px 8px 32px; /* Padding menor para mobile */
+  }
+  
+  .search-bar .fa-search {
+    left: 12px;
+    font-size: 13px; /* Ícone um pouco menor */
+  }
+}
     /* Lightbox */
     .lightbox-modal {
       display: none;
@@ -283,7 +309,7 @@
     <a href="projetos.html">Projects and collaborations</a>
     <a href="curriculo.html">Curriculum</a>
     <a href="galeria.html"class="active">Photos</a>
-    <a href="tutoriais.html">Bioinformatics tutorials</a>
+    <a href="tutoriais.html">Tutorials and reviews</a>
     <a href="contato.html">Contact</a>
 </nav>
 
