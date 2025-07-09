@@ -385,20 +385,27 @@
     .project-card h3 {
         color: var(--verde-escuro);
     }
+
+    nav a.active {
+    font-weight: bold;
+    color: white; /* ou qualquer estilo que desejar */
+    border-bottom: 2px solid white;
+}
+
 </style>
     </style>
 </head>
 <body>
-    <nav>
+     <nav>
     <a href="index.html#sobre">About me</a>
-    <a href="index.html#projetos">Projects and collaborations</a>
-    <a href="index.html#curriculo">Curriculum</a>
+    <a href="projetos.html">Projects and collaborations</a>
+    <a href="curriculo.html">Curriculum</a>
     <a href="galeria.html">Photos</a>
     <a href="tutoriais.html">Bioinformatics tutorials</a>
-    <a href="contato.html">Contact</a>
+    <a href="contato.html"class="active">Contact</a>
 </nav>
 
-    <!-- Seção Contato -->
+<!-- Seção Contato -->
 <section id="index.contato">
     <h2>Contact</h2>
     <div class="project-card" style="display: flex; gap: 30px; align-items: center;">
@@ -433,6 +440,15 @@
             <img src="imagens/contracapa.jpg" alt="Contact illustration" 
                  style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
             <p style="margin-top: 10px; color: #2E8B57;">I would love to hear from you!</p>
+            
+            <!-- Adição do link do Instagram do lab -->
+            <div style="margin-top: 20px;">
+                <a href="https://www.instagram.com/labevo.fern/" target="_blank" 
+                   style="display: inline-flex; align-items: center; text-decoration: none; color: #2E8B57;">
+                    <i class="fab fa-instagram" style="font-size: 24px; margin-right: 8px;"></i>
+                    <span>Follow our lab on Instagram</span>
+                </a>
+            </div>
         </div>
     </div>
 </section>

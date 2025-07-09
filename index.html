@@ -384,6 +384,87 @@
     .project-card h3 {
         color: var(--verde-escuro);
     }
+
+    nav a.active {
+    font-weight: bold;
+    color: white; /* ou qualquer estilo que desejar */
+    border-bottom: 2px solid white;
+}
+
+/* Research Interests Section */
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.research-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.research-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.research-icon {
+    background-color: var(--verde-escuro);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.research-content {
+    padding: 25px;
+    flex-grow: 1;
+}
+
+.research-content h3 {
+    color: var(--verde-escuro);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.research-content p {
+    color: var(--texto-escuro);
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Publications */
+.publications-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.publications-list li {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid var(--verde-escuro);
+}
+
+.publication-link {
+    color: var(--verde-escuro);
+    text-decoration: none;
+    margin-left: 10px;
+}
+
 </style>
     </style>
 </head>
@@ -401,10 +482,10 @@
     </header>
     
     <!-- Menu de Navegação -->
-<nav>
-    <a href="index.html#sobre">About me</a>
-    <a href="index.html#projetos">Projects and collaborations</a>
-    <a href="index.html#curriculo">Curriculum</a>
+ <nav>
+    <a href="index.html#sobre"class="active">About me</a>
+    <a href="projetos.html">Projects and collaborations</a>
+    <a href="curriculo.html">Curriculum</a>
     <a href="galeria.html">Photos</a>
     <a href="tutoriais.html">Bioinformatics tutorials</a>
     <a href="contato.html">Contact</a>
@@ -415,48 +496,71 @@
         <h2>About me</h2>
         <p>Full degree in biological sciences from the Federal University of Maranhão (UFMA, 2022). As an undergraduate researcher (PIBIC-UFMA 2020-2021), I worked on the "Maintenance and Computerization of the Vascular Plants Collection" project, focusing on the taxonomy of Cerrado ferns and lycophytes in conservation areas. In 2025, I completed my MSc in Plant Biology at the Federal University of Pernambuco (UFPE), where I studied the genus <em>Microgramma</em> (Scaly Clade) using morphometrics and near-infrared spectroscopy to improve species delimitation. Currently, as a PhD candidate in Plant Biology (UFPE), I investigate leaf dimorphism evolution in <em>Microgramma</em>, integrating phylogenomics, transcriptomics, and morphological evolution to understand the diversification mechanisms in this group.</p>
     </section>
+
+    <!-- pesquisa -->
+    <section id="research">
+    <h2>Research Interests</h2>
     
-    <!-- Seção Projetos -->
-    <section id="projetos">
-        <h2>Projects and collaborations</h2>
-        
-        <div class="project-card">
-            <h3>Dinâmica da exploração do espaço fenotípico em samambaias e licófitas (2022 - Atual)</h3>
-            <p><strong>Situação:</strong> Em andamento | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Investigamos a ocupação do espaço fenotípico e ambiental em linhagens de samambaias e licófitas utilizando dados morfométricos, espectrais (infravermelho próximo) e ambientais, combinados com inferências filogenéticas obtidas por sequenciamento massivo de DNA.</p>
-            <p><strong>Integrantes:</strong> Thais Elias Almeida (Coordenadora), Niksoney Azevedo Mendonça, Augusto César Pessôa Santiago, Marise Helen Vale de Oliveira, Carolina do Valle Monteiro Sousa, Keven dos Santos Lima.</p>
+    <div class="research-grid">
+        <!-- Primeiro interesse -->
+        <div class="research-card">
+            <div class="research-icon">
+                <i class="fas fa-seedling"></i>
+            </div>
+            <div class="research-content">
+                <h3>Taxonomy and Ecology of Ferns and Lycophytes</h3>
+                <p>To investigate the species diversity, distribution patterns and ecological relationships of ferns and lycophytes in tropical ecosystems.</p>
+            </div>
         </div>
         
-        <div class="project-card">
-            <h3>Curadoria e conservação do Herbário CCAA (2024 - Atual)</h3>
-            <p><strong>Situação:</strong> Em andamento | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Projeto de manutenção e ampliação do acervo do Herbário CCAA (UFMA-Chapadinha), que conta com cerca de 2.100 amostras, incluindo 946 samambaias e 106 licófitas. O objetivo é documentar a diversidade vegetal do Maranhão, com ênfase na região do Cerrado, e disponibilizar os dados para a comunidade científica.</p>
-            <p><strong>Integrantes:</strong> Rozijane Santos Fernandes (Coordenadora), Niksoney Azevedo Mendonça, Maria da Conceição de Carvalho Bastos, Sirlane Santos Oliveira, Vanessa Fernandes Ferreira, Pedro Henrique Castro Aguiar, Jainara Pereira Silva, José Augusto dos Santos Silva, Francimária Vasconcelos Carvalho, Carla Denise de Sousa Araújo, Lailze Sousa Monteles, Lazaro Nikael Araujo Oliveira, Vinicius Lima Sampaio.</p>
+        <!-- Segundo interesse -->
+        <div class="research-card">
+            <div class="research-icon">
+                <i class="fas fa-project-diagram"></i>
+            </div>
+            <div class="research-content">
+                <h3>Integrative Systematics of Ferns and Lycophytes</h3>
+                <p>Combining morphological, molecular, and spectroscopic data to resolve taxonomic complexities and improve species delimitation.</p>
+            </div>
         </div>
         
-        <div class="project-card">
-            <h3>Curadoria e conservação do Herbário CCAA (2022 - 2024)</h3>
-            <p><strong>Situação:</strong> Concluído | <strong>Natureza:</strong> Pesquisa</p>
-            <p>Projeto anterior de curadoria que consolidou o Herbário CCAA como patrimônio institucional, organizando cerca de 2.100 amostras botânicas (incluindo 946 samambaias) em banco de dados e estabelecendo protocolos de conservação.</p>
-            <p><strong>Integrantes:</strong> Rozijane Santos Fernandes (Coordenadora), Niksoney Azevedo Mendonça, Maria da Conceição de Carvalho Bastos, Sirlane Santos Oliveira, Frácimaria V. Carvalho, Pedro Henrique Castro Aguiar, Jainara Pereira Silva.</p>
+        <!-- Terceiro interesse -->
+        <div class="research-card">
+            <div class="research-icon">
+                <i class="fas fa-code-branch"></i>
+            </div>
+            <div class="research-content">
+                <h3>Evolution of Ferns and Lycophytes</h3>
+                <p>Exploring evolutionary mechanisms behind important innovations, using phylogenomic approaches to understand patterns of diversification in different lineages.</p>
         </div>
-    </section>
-    
-   <!-- Seção Currículo -->
-<section id="curriculo">
-    <h2>Curriculum Vitae</h2>
-    <div class="project-card" style="text-align: center; padding: 2rem;">
-        <h3 style="margin-bottom: 1.5rem;">Meu currículo completo está disponível na Plataforma Lattes</h3>
-        <a href="http://lattes.cnpq.br/3437999134934422" target="_blank" 
-           style="background-color: var(--verde-escuro); color: white; padding: 12px 24px; 
-                  border-radius: 5px; text-decoration: none; display: inline-block;
-                  transition: background-color 0.3s; font-weight: bold;">
-            <i class="fas fa-external-link-alt"></i> Acessar Currículo Lattes
-        </a>
-        <p style="margin-top: 1.5rem; font-style: italic;">
-            Todas as informações acadêmicas e profissionais atualizadas
-        </p>
     </div>
+</section>
+
+       <!-- publicações -->
+<section id="publicacoes">
+    <h2>Publications</h2>
+    <ul class="publications-list">
+        <li>
+            <strong>Mendonça NA, Oliveira SS, Aljahara J, Almeida TE & Fernandes RS</strong> (2025) Ferns and lycophytes in the Cerrado: a floristic study in eastern Maranhão, northeastern Brazil.
+            <em>Rodriguesia</em>. 
+            <a href="https://doi.org/10.1590/2175-7860202475089" target="_blank" class="publication-link">[DOI]</a>
+        </li>
+        <li>
+            <strong>Silva DVSE, Mendonça NA, Barros MF, Almeida TE & Santiago ACP</strong> (2024) Aislados en islas biogeográficas: descubrimiento de una población disyunta de un helecho en el Bosque Atlántico del Nordeste. 
+            <em>REVISTA PERUANA DE BIOLOGÍA</em>.
+            <a href="https://doi.org/10.15381/rpb.v31i4.28802" target="_blank" class="publication-link">[DOI]</a>
+        </li>
+        <li>
+            <strong>Oliveira SS, Mendonça NA & Fernandes RS</strong> (2024) Thelypteridaceae (Polypodiopsida) do estado do Maranhão, Nordeste do Brasil.
+            <em>HOEHNEA</em>. 
+            <a href="https://doi.org/10.1590/2236-8906e702023" target="_blank" class="publication-link">[DOI]</a>
+        </li>
+        <li>
+            <strong>Pestana MCA, Mendonça NA, Oliveira RF, Bastos MCC, Silva MI, Barroso AM, Hora RC & Guarçoni EAE </strong> (2022) First records of Utricularia breviscapa C. Wright ex Griseb. (Lentibulariaceae) for Maranhão state, northeastern Brazil. 
+            <em>CHECK LIST, JOURNAL OF SPECIES LIST AND DISTRIBUTION</em>.
+            <a href="https://doi.org/10.15381/rpb.v31i4.28802" target="_blank" class="publication-link">[DOI]</a>
+        </li>
+    </ul>
 </section>
     
     <!-- Rodapé -->
@@ -475,25 +579,6 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // Script para a seção de comentários
-        document.querySelector('.comment-btn').addEventListener('click', function() {
-            const commentSection = document.getElementById('commentSection');
-            commentSection.style.display = commentSection.style.display === 'block' ? 'none' : 'block';
-        });
-        
-        // Contador de curtidas
-        let likeCount = 0;
-        const likeBtn = document.querySelector('.like-btn');
-        const likeCountElement = document.getElementById('likeCount');
-        
-        likeBtn.addEventListener('click', function() {
-            likeCount++;
-            likeCountElement.textContent = likeCount;
-            this.innerHTML = `<i class="fas fa-heart"></i> Curtido`;
-            this.style.backgroundColor = '#ff5252';
-        });
     </script>
 </body>
 </html>

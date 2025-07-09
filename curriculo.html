@@ -121,19 +121,21 @@
         
         /* Estilos para a galeria */
         .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
         
         .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
+             height: 220px; /* Mantém a altura fixa */
+    width: 100%; /* Garante que ocupe toda a largura disponível */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
         
         .gallery-item:hover {
             transform: scale(1.03);
@@ -383,109 +385,6 @@
     .project-card h3 {
         color: var(--verde-escuro);
     }
-</style>
-    </style>
-</head>
-<body>
-   <nav>
-    <a href="index.html#sobre">About me</a>
-    <a href="projetos.html">Projects and collaborations</a>
-    <a href="curriculo.html">Curriculum</a>
-    <a href="galeria.html">Photos</a>
-    <a href="tutoriais.html"class="active">Bioinformatics tutorials</a>
-    <a href="contato.html">Contact</a>
-</nav>
-
- <!-- Seção Tutoriais -->
-<section id="tutoriais">
-    <h2>Bioinformatics tutorials</h2>
-    
-    <!-- Barra de Pesquisa -->
-    <div class="search-bar">
-        <input type="text" id="tutorial-search" placeholder="Pesquisar tutoriais..." onkeyup="searchTutorials()">
-        <i class="fas fa-search"></i>
-    </div>
-    
-    <!-- Tutorial 1 -->
-    <div class="project-card tutorial-item">
-        <h3>DiaOutline: a software for extracting morphological contours</h3>
-        <p>DiaOutline, a powerful and intuitive tool for extracting contours from images, specially designed for morphometric studies in plant biology and related areas......</p>
-        <div class="tutorial-meta">
-            <span><i class="fas fa-tags"></i> Keywords: statistics, contours, shape variation. </span><br>
-            <span><i class="fas fa-calendar-alt"></i> Published on: 07/08/2025</span><br>
-            <span><i class="fas fa-user"></i> Author: Niksoney A. Mendonça</span>
-        </div>
-        <a href="tutoriaispronto/dioutlinepart1.html" class="read-more">Continue reading <i class="fas fa-arrow-right"></i></a>
-    </div>
-
-<style>
-    /* Estilo da barra de pesquisa */
-    .search-bar {
-        position: relative;
-        margin-bottom: 30px;
-        max-width: 500px;
-    }
-    
-    .search-bar input {
-        width: 100%;
-        padding: 12px 20px;
-        padding-left: 40px;
-        border: 2px solid var(--verde-claro);
-        border-radius: 30px;
-        font-size: 16px;
-        outline: none;
-        transition: all 0.3s;
-    }
-    
-    .search-bar input:focus {
-        border-color: var(--verde-escuro);
-        box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
-    }
-    
-    .search-bar .fa-search {
-        position: absolute;
-        left: 15px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: var(--verde-escuro);
-    }
-    
-    /* Estilo dos metadados do tutorial */
-    .tutorial-meta {
-        margin: 15px 0;
-        color: #555;
-        font-size: 0.9em;
-        line-height: 1.6;
-    }
-    
-    .tutorial-meta i {
-        margin-right: 5px;
-        width: 18px;
-        text-align: center;
-        color: var(--verde-escuro);
-    }
-    
-    .read-more {
-        display: inline-block;
-        margin-top: 10px;
-        padding: 8px 20px;
-        background-color: var(--verde-escuro);
-        color: white;
-        text-decoration: none;
-        border-radius: 30px;
-        transition: all 0.3s;
-        font-size: 0.9em;
-    }
-    
-    .read-more:hover {
-        background-color: var(--verde-claro);
-        transform: translateX(5px);
-    }
-    
-    .read-more i {
-        margin-left: 5px;
-        font-size: 0.8em;
-    }
 
     nav a.active {
     font-weight: bold;
@@ -494,25 +393,31 @@
 }
 
 </style>
+    </style>
+</head>
+<body>
+    <nav>
+    <a href="index.html#sobre">About me</a>
+    <a href="projetos.html">Projects and collaborations</a>
+    <a href="curriculo.html"class="active">Curriculum</a>
+    <a href="galeria.html">Photos</a>
+    <a href="tutoriais.html">Bioinformatics tutorials</a>
+    <a href="contato.html">Contact</a>
+</nav>
 
-<script>
-    function searchTutorials() {
-        const input = document.getElementById('tutorial-search');
-        const filter = input.value.toUpperCase();
-        const cards = document.getElementsByClassName('tutorial-item');
-        
-        for (let i = 0; i < cards.length; i++) {
-            const title = cards[i].getElementsByTagName('h3')[0];
-            const content = cards[i].getElementsByTagName('p')[0];
-            const keywords = cards[i].getElementsByClassName('tutorial-meta')[0];
-            
-            const textValue = title.textContent + content.textContent + keywords.textContent;
-            
-            if (textValue.toUpperCase().indexOf(filter) > -1) {
-                cards[i].style.display = "";
-            } else {
-                cards[i].style.display = "none";
-            }
-        }
-    }
-</script>
+ <!-- Seção Currículo -->
+<section id="curriculo">
+    <h2>Curriculum</h2>
+    <div class="project-card" style="text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1.5rem;">My full CV is available on the Lattes Platform</h3>
+        <a href="http://lattes.cnpq.br/3437999134934422" target="_blank" 
+           style="background-color: var(--verde-escuro); color: white; padding: 12px 24px; 
+                  border-radius: 5px; text-decoration: none; display: inline-block;
+                  transition: background-color 0.3s; font-weight: bold;">
+            <i class="fas fa-external-link-alt"></i> Access Lattes CV
+        </a>
+        <p style="margin-top: 1.5rem; font-style: italic;">
+            All up-to-date academic and professional information
+        </p>
+    </div>
+</section>

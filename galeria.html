@@ -26,8 +26,9 @@
       background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('imagens/contracapa.jpg') center/cover no-repeat;
       color: white;
       padding: 2rem 1rem;
-      text-align: center;
+       position: relative;
     }
+        
 
     nav {
       background-color: var(--verde-escuro);
@@ -64,134 +65,149 @@
       padding: 1.5rem;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       margin-bottom: 2rem;
+          transition: transform 0.3s;
+   }
+
+    .gallery {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--verde-claro) #f1f1f1;
+      padding-bottom: 15px;
     }
 
-   .gallery {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
+    .gallery::-webkit-scrollbar {
+      height: 8px;
+    }
 
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.5s ease;
-  width: max-content;
-}
+    .gallery::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
 
-.gallery-item {
-  width: 300px;
-  height: 300px;
-  flex-shrink: 0;
-  margin: 0 5px;
-  background: #f8f8f8;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+    .gallery::-webkit-scrollbar-thumb {
+      background-color: var(--verde-claro);
+      border-radius: 10px;
+    }
 
-.gallery-item a {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
+    .carousel-wrapper {
+      display: flex;
+      gap: 15px;
+      width: max-content;
+      padding: 5px 10px;
+    }
 
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s;
-}
+    .gallery-item {
+      width: 280px;
+      height: 280px;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      background: #f8f8f8;
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
 
-.gallery-item:hover img {
-  transform: scale(1.05);
-}
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
 
-.gallery-caption {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.6);
-  color: white;
-  padding: 8px;
-  text-align: center;
-  font-style: italic;
-  font-size: 0.9em;
-}
+    .gallery-item a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
-.carousel-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2.5rem;
-  background: rgba(0,0,0,0.5);
-  color: white;
-  padding: 8px 14px;
-  cursor: pointer;
-  z-index: 100;
-  border-radius: 50%;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-.carousel-nav.left {
-  left: 10px;
-}
-
-.carousel-nav.right {
-  right: 10px;
-}
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 8px;
+      text-align: center;
+      font-style: italic;
+      font-size: 0.9em;
+    }
 
     .gallery-footer {
       text-align: center;
-      margin-top: 10px;
+      margin-top: 15px;
       color: #555;
       font-size: 0.98em;
     }
 
-    #search-bar {
-      margin: 10px auto 30px;
-      display: block;
-      padding: 10px;
-      width: 60%;
+    /* Estilo da barra de pesquisa */
+    .search-bar {
+      position: relative;
+      margin: 20px auto 30px;
       max-width: 500px;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
     }
 
-    /* Atualize o lightbox-modal existente */
-.lightbox-modal {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    left: 0; top: 0;
-    width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-}
+    .search-bar input {
+      width: 100%;
+      padding: 12px 20px;
+      padding-left: 40px;
+      border: 2px solid var(--verde-claro);
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s;
+    }
 
-.lightbox-content {
-    position: relative;
-    width: 80vw;
-    height: 80vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    .search-bar input:focus {
+      border-color: var(--verde-escuro);
+      box-shadow: 0 0 8px rgba(46, 139, 87, 0.3);
+    }
 
-#lightboxImg {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.5);
-}
+    .search-bar .fa-search {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--verde-escuro);
+    }
+
+    /* Lightbox */
+    .lightbox-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .lightbox-content {
+      position: relative;
+      width: 80vw;
+      height: 80vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #lightboxImg {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+    }
 
     .lightbox-modal[style*="display: flex"] {
       display: flex !important;
@@ -226,169 +242,183 @@
     .social-icons a:hover {
       transform: scale(1.2);
     }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav a {
+        display: block;
+        margin: 5px 0;
+      }
+      
+      .gallery-item {
+        width: 240px;
+        height: 240px;
+      }
+    }
+
+    section h2 {
+      color: var(--verde-escuro);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--verde-claro);
+      margin-bottom: 20px;
+    }
+    
+    .project-card h3 {
+      color: var(--verde-escuro);
+    }
+
+    nav a.active {
+    font-weight: bold;
+    color: white; /* ou qualquer estilo que desejar */
+    border-bottom: 2px solid white;
+}
+
   </style>
 </head>
 <body>
+
+  <body>
+    <nav>
+    <a href="index.html#sobre">About me</a>
+    <a href="projetos.html">Projects and collaborations</a>
+    <a href="curriculo.html">Curriculum</a>
+    <a href="galeria.html"class="active">Photos</a>
+    <a href="tutoriais.html">Bioinformatics tutorials</a>
+    <a href="contato.html">Contact</a>
+</nav>
 
 <!-- Lightbox Modal -->
 <div class="lightbox-modal" id="lightboxModal">
   <div class="lightbox-content" style="position:relative; max-width:90vw; max-height:90vh;">
     <button class="lightbox-close" id="closeLightbox" style="position:absolute; top:-30px; right:0; color:white; font-size:2em; cursor:pointer; background:none; border:none;">&times;</button>
     <img id="lightboxImg" src="" alt="" style="max-width:100%; max-height:80vh; border-radius:8px; box-shadow:0 4px 24px rgba(0,0,0,0.5);">
-    <div class="lightbox-copyright" style="color:white; background:rgba(0,0,0,0.7); padding:6px 12px; border-radius:5px; font-size:1em; position:absolute; bottom:10px; left:50%; transform:translateX(-50%); text-align:center;">
-      © N.A.Mendonça
+    <div class="lightbox-copyright" id="lightboxCopyright" style="color:white; background:rgba(0,0,0,0.7); padding:6px 12px; border-radius:5px; font-size:1em; position:absolute; bottom:10px; left:50%; transform:translateX(-50%); text-align:center;">
+      <!-- Copyright info will be inserted here by JavaScript -->
     </div>
   </div>
 </div>
-
-<!-- Menu -->
-<nav>
-  <a href="index.html#sobre">About me</a>
-  <a href="index.html#projetos">Projects and collaborations</a>
-  <a href="index.html#curriculo">Curriculum</a>
-  <a href="galeria.html">Photos</a>
-  <a href="tutoriais.html">Bioinformatics tutorials</a>
-  <a href="contato.html">Contact</a>
-</nav>
 
 <!-- GALERIA -->
 <section id="galeria">
   <h2>Photos</h2>
 
-  <input type="text" id="search-bar" placeholder="Search name here...">
+  <div class="search-bar">
+    <input type="text" id="search-bar" placeholder="Search species..." onkeyup="searchGallery()">
+    <i class="fas fa-search"></i>
+  </div>
 
   <div class="project-card">
     <h3>Fern and Lycophyte Species</h3>
     <div class="gallery">
       <div class="carousel-wrapper">
-        <div class="gallery-item">
+        <!-- Adiantum lucidum -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
           <a href="imagens/Espécies de samambaias e licófitas/Adiantum lucidum.jpg" class="lightbox">
             <img src="imagens/Espécies de samambaias e licófitas/Adiantum lucidum.jpg" alt="Adiantum lucidum">
             <div class="gallery-caption"><em>Adiantum lucidum</em></div>
           </a>
         </div>
-        <div class="gallery-item">
+        
+        <!-- Cyathea microdonda -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
           <a href="imagens/Espécies de samambaias e licófitas/Cyathea microdonda.jpg" class="lightbox">
             <img src="imagens/Espécies de samambaias e licófitas/Cyathea microdonda.jpg" alt="Cyathea microdonda">
             <div class="gallery-caption"><em>Cyathea microdonda</em></div>
           </a>
         </div>
-        <div class="gallery-item">
+        
+        <!-- Marsilea polycarpa -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
           <a href="imagens/Espécies de samambaias e licófitas/Marsilea polycarpa.jpg" class="lightbox">
             <img src="imagens/Espécies de samambaias e licófitas/Marsilea polycarpa.jpg" alt="Marsilea polycarpa">
             <div class="gallery-caption"><em>Marsilea polycarpa</em></div>
           </a>
         </div>
-        <div class="gallery-item">
+        
+        <!-- Meniscium hostmannii -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
           <a href="imagens/Espécies de samambaias e licófitas/Meniscium hostmannii.jpg" class="lightbox">
             <img src="imagens/Espécies de samambaias e licófitas/Meniscium hostmannii.jpg" alt="Meniscium hostmannii">
             <div class="gallery-caption"><em>Meniscium hostmannii</em></div>
           </a>
         </div>
-      <div class="gallery-item">
-        <a href="imagens/Espécies de samambaias e licófitas/Nephrolepis brownii.jpg" class="lightbox">
-          <img src="imagens/Espécies de samambaias e licófitas/Nephrolepis brownii.jpg" alt="Nephrolepis brownii">
-          <div class="gallery-caption"><em>Nephrolepis brownii</em></div>
-        </a>
-      </div>
-      <div class="gallery-item">
-        <a href="imagens/Espécies de samambaias e licófitas/Salvinia auriculata.jpg" class="lightbox">
-          <img src="imagens/Espécies de samambaias e licófitas/Salvinia auriculata.jpg" alt="Salvinia auriculata">
-          <div class="gallery-caption"><em>Salvinia auriculata</em></div>
-        </a>
-      </div>
-      <div class="gallery-item">
-        <a href="imagens/Espécies de samambaias e licófitas/Selaginella radiata.jpg" class="lightbox">
-          <img src="imagens/Espécies de samambaias e licófitas/Selaginella radiata.jpg" alt="Selaginella radiata">
-          <div class="gallery-caption"><em>Selaginella radiata</em></div>
-        </a>
+        
+        <!-- Nephrolepis brownii -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
+          <a href="imagens/Espécies de samambaias e licófitas/Nephrolepis brownii.jpg" class="lightbox">
+            <img src="imagens/Espécies de samambaias e licófitas/Nephrolepis brownii.jpg" alt="Nephrolepis brownii">
+            <div class="gallery-caption"><em>Nephrolepis brownii</em></div>
+          </a>
+        </div>
+        
+        <!-- Salvinia auriculata -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
+          <a href="imagens/Espécies de samambaias e licófitas/Salvinia auriculata.jpg" class="lightbox">
+            <img src="imagens/Espécies de samambaias e licófitas/Salvinia auriculata.jpg" alt="Salvinia auriculata">
+            <div class="gallery-caption"><em>Salvinia auriculata</em></div>
+          </a>
+        </div>
+
+        <!-- Hemionitis tomentosa -->
+        <div class="gallery-item" data-copyright="© D.V.S.Silva">
+          <a href="imagens/Espécies de samambaias e licófitas/Hemionitis tomentosa .jpg" class="lightbox">
+            <img src="imagens/Espécies de samambaias e licófitas/Hemionitis tomentosa .jpg" alt="Hemionitis tomentosa">
+            <div class="gallery-caption"><em>Hemionitis tomentosa</em></div>
+          </a>
+        </div>
+        
+        <!-- Selaginella radiata -->
+        <div class="gallery-item" data-copyright="© N.A.Mendonça">
+          <a href="imagens/Espécies de samambaias e licófitas/Selaginella radiata.jpg" class="lightbox">
+            <img src="imagens/Espécies de samambaias e licófitas/Selaginella radiata.jpg" alt="Selaginella radiata">
+            <div class="gallery-caption"><em>Selaginella radiata</em></div>
+          </a>
+        </div>
       </div>
     </div>
-
-      <!-- SETAS DE NAVEGAÇÃO -->
-      <div class="carousel-nav left">&#10094;</div>
-      <div class="carousel-nav right">&#10095;</div>
-
-      <div class="gallery-footer">All images are intellectual property © Niksoney A. Mendonça - All rights reserved</div>
-    </div>
+    <div class="gallery-footer">
+  <div>All images are intellectual property of © Niksoney A. Mendonça and collaborators - All rights reserved</div>
+  <div class="additional-info" style="margin-top: 6px; font-size: 0.9em; color: #666;">
+    Images have permission for use if referenced.
+    <!-- You can add any additional text here -->
   </div>
-
-<!-- Rodapé -->
-<footer>
-  <div class="footer-content">
-    <p>&copy; 2025 by Niksoney Azevedo Mendonça. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="http://lattes.cnpq.br/3437999134934422" title="Lattes" target="_blank"><i class="fas fa-graduation-cap"></i></a>
-      <a href="https://orcid.org/0000-0002-5336-011X" title="ORCID" target="_blank"><i class="fab fa-orcid"></i></a>
-      <a href="https://www.researchgate.net/profile/Niksoney-Mendonca?ev=hdr_xprf" title="ResearchGate" target="_blank"><i class="fab fa-researchgate"></i></a>
-      <a href="https://api.whatsapp.com/send?phone=5598991213636" title="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://github.com/niksoney" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://x.com/Niksoneybio" title="Twitter" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.instagram.com/niksoney_/" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-    </div>
+</div>
   </div>
-</footer>
+</section>
 
 <!-- Scripts -->
 <script>
-// Lightbox
+// Enhanced Lightbox with copyright info
 document.querySelectorAll('.gallery-item a').forEach(link => {
-  link.addEventListener('click', function (e) {
+  link.addEventListener('click', function(e) {
     e.preventDefault();
-    document.getElementById('lightboxImg').src = this.querySelector('img').src;
+    const galleryItem = this.closest('.gallery-item');
+    const imgSrc = this.querySelector('img').src;
+    const copyright = galleryItem.getAttribute('data-copyright') || '© N.A.Mendonça';
+    
+    document.getElementById('lightboxImg').src = imgSrc;
+    document.getElementById('lightboxCopyright').textContent = copyright;
     document.getElementById('lightboxModal').style.display = 'flex';
   });
 });
-document.getElementById('closeLightbox').onclick = function () {
+
+// Close lightbox functions remain the same
+document.getElementById('closeLightbox').onclick = function() {
   document.getElementById('lightboxModal').style.display = 'none';
 };
-document.getElementById('lightboxModal').onclick = function (e) {
+document.getElementById('lightboxModal').onclick = function(e) {
   if (e.target === this) this.style.display = 'none';
 };
 
-// Busca + carrossel
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".project-card").forEach(card => {
-    const gallery = card.querySelector(".gallery");
-    const wrapper = gallery.querySelector(".carousel-wrapper");
-    const items = wrapper.querySelectorAll(".gallery-item");
-    const itemsPerPage = 3;
-    let index = 0;
-
-    if (items.length <= itemsPerPage) return;
-
-    const left = gallery.querySelector(".carousel-nav.left");
-    const right = gallery.querySelector(".carousel-nav.right");
-
-    function update() {
-      const itemWidth = items[0].offsetWidth + 10; // largura + margem (5px de cada lado)
-      const shift = -index * itemWidth;
-      wrapper.style.transform = `translateX(${shift}px)`;
-    }
-
-    left.addEventListener("click", () => {
-      index = Math.max(index - 1, 0);
-      update();
+// Search function remains the same
+function searchGallery() {
+    const input = document.getElementById('search-bar');
+    const filter = input.value.toLowerCase();
+    const items = document.querySelectorAll('.gallery-item');
+    
+    items.forEach(item => {
+        const caption = item.querySelector('.gallery-caption')?.innerText.toLowerCase() || "";
+        item.style.display = caption.includes(filter) ? "flex" : "none";
     });
-
-    right.addEventListener("click", () => {
-      index = Math.min(index + 1, items.length - itemsPerPage);
-      update();
-    });
-
-    update();
-  });
-
-  // Filtro de busca
-  const searchBar = document.getElementById("search-bar");
-  searchBar.addEventListener("input", function () {
-    const val = this.value.toLowerCase();
-    document.querySelectorAll(".gallery-item").forEach(item => {
-      const caption = item.querySelector(".gallery-caption")?.innerText.toLowerCase() || "";
-      item.style.display = caption.includes(val) ? "flex" : "none";
-    });
-  });
-})
+}
 </script>
-</body>
-</html>
