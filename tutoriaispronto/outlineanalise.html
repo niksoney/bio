@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fourier Analysis | Niksoneybio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    :root {
+      --verde-escuro: #2E8B57;
+      --verde-claro: #3CB371;
+      --fundo-claro: #F5F5F5;
+      --texto-escuro: #333;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: var(--fundo-claro);
+      color: var(--texto-escuro);
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      background-color: var(--verde-escuro);
+      padding: 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    nav a.active {
+      font-weight: bold;
+      color: white;
+      border-bottom: 2px solid white;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links a {
+        margin: 5px 0;
+        padding: 10px;
+      }
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: var(--verde-escuro);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--verde-claro);
+      margin-bottom: 20px;
+    }
+
+    .text-section {
+      padding: 0 20px;
+    }
+
+    .justified-text {
+      text-align: justify;
+      text-justify: inter-word;
+      font-size: 1.1em;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .installation-steps {
+      background-color: #f8f9fa;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .step {
+      margin-bottom: 25px;
+      padding-bottom: 25px;
+      border-bottom: 1px dashed #ccc;
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    pre {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+
+    .tips {
+      margin-top: 30px;
+    }
+
+    .tip-card {
+      background-color: #fffde7;
+      padding: 15px;
+      border-left: 4px solid #ffd600;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tip-card i {
+      color: var(--verde-escuro);
+      font-size: 1.2em;
+    }
+
+    #comentarios {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    #comentarios input,
+    #comentarios textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    #comentarios button {
+      background-color: var(--verde-escuro);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #comentarios button:hover {
+      background-color: var(--verde-claro);
+    }
+
+    #lista-comentarios {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #lista-comentarios li {
+      background: #f5f5f5;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+     #comentarios h3 {
+    color: var(--verde-escuro);
+  }
+
+/* arrumar as imagens */
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 30px 0;
+}
+figure {
+  margin: 0;
+  border: 1px solid #eee;
+  padding: 10px;
+  border-radius: 5px;
+}
+figcaption {
+  font-size: 0.9em;
+  text-align: center;
+  margin-top: 8px;
+  color: #555;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin: 2rem 0;
+}
+
+.image-container figure {
+  flex: 1 1 300px;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.9em;
+  color: #555;
+}
+
+</style>
+</style>
+  </style>
+
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+</head>
+
+<body>
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+    <div class="nav-links" id="navLinks">
+      <a href="../index.html#sobre">About me</a>
+      <a href="../projetos.html">Projects and collaborations</a>
+      <a href="../curriculo.html">Curriculum</a>
+      <a href="../galeria.html">Photos</a>
+      <a href="../tutoriais.html" class="active">Tutorials and reviews</a>
+      <a href="../contato.html">Contact</a>
+    </div>
+  </nav>
+
+<!-- Seção do Tutorial -->
+<section id="tutorial">
+  <h2>Elliptical Fourier Analysis in R</h2>
+  <div class="text-section">
+    <p class="justified-text">
+      This tutorial explains how to perform <strong>Elliptical Fourier Analysis (EFA)</strong> using the <code>Momocs</code> package in R. It includes data import, harmonics calibration, PCA and LDA — applied to eight fern species with both fertile and sterile leaves.
+    </p>
+
+    <div class="installation-steps">
+      <div class="step">
+        <h4>Step 1 - Load required packages</h4>
+        <pre><code># Load necessary libraries
+library(readxl)      # For reading Excel files
+library(Momocs)      # For morphometric analysis
+library(tidyverse)   # For data manipulation
+library(ggplot2)     # For advanced plotting</code></pre>
+      </div>
+
+      <div class="step">
+        <h4>Step 2 - Define colors and set working directory</h4>
+        <pre><code># Define 8 colors for the 8 species in this study
+my_colors <- c("#E69F00", "#56B4E9", "#009E73", "#F0E442", 
+               "#0072B2", "#D55E00", "#CC79A7", "#555555")
+
+# Set working directory to folder containing data files
+setwd("C:/Users/nikso/OneDrive/Vida acadêmica e pessoal - Niksoney/MORFOMETRIA GEOMÉTRICA - (MG)/_Oultine")</code></pre>
+      </div>
+
+      <div class="step">
+        <h4>Step 3 - Read coordinates and species info</h4>
+        <pre><code># List all text files containing coordinate data
+lf <- list.files("Coordenadas_fourier_estéril/", pattern = "\\.txt$", full.names = TRUE)
+
+# Read Excel file with species names and individual identifiers
+spp_names <- read_xlsx("Coordenadas_fourier_estéril/tabelaoutline_esteril.xlsx")
+
+# View unique species names
+unique(spp_names$especie)</code></pre>
+        
+        <div class="image-container">
+          <figure>
+            <img src="contorno1.png" 
+                 alt="Screenshot of coordinate files and Excel data structure"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 1: Structure of coordinate files and metadata spreadsheet</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>Step 4 - Build shape object</h4>
+        <pre><code># Import coordinate data from text files
+lf_coord <- import_txt(lf)
+
+# Reorder coordinates to match Excel file order
+lf_coord <- lf_coord[spp_names$individuo]
+
+# Assign species names to coordinate objects
+names(lf_coord) <- spp_names$especie
+
+# Create factor variable for each individual
+lf_fac <- as.data.frame(names(lf_coord))
+names(lf_fac)[1] <- "Type"
+lf_fac$Type <- as.factor(lf_fac$Type)
+
+# Create Momocs Out object
+lf_out <- Out(lf_coord, fac = lf_fac)</code></pre>
+        
+      <div class="step">
+        <h4>Step 5 - Visualize shapes and harmonics</h4>
+        <pre><code># Save mean shapes plot
+png("Imagens_prontas/formas_médias_esteril.png", width = 10, height = 8, units = "in", res = 300)
+formas_gerais <- panel(lf_out, fac="Type", names=TRUE)
+dev.off()
+
+# Visualize contour stacks
+stack(coo_center(lf_out),
+      palette = col_summer,
+      fac = lf_out$Type,
+      title = "Stack of outlines from all individuals",
+      subtitle = paste("Relação entre Área e Comprimento dos Contornos das Folhas"))
+
+# Determine optimal number of harmonics
+png("Imagens_prontas/harmonicos_esteril.png", width = 10, height = 8, units = "in", res = 300)
+harmonics_info <- calibrate_harmonicpower_efourier(lf_out, 
+                                                 nb.h = 10, 
+                                                 drop = 1,
+                                                 thresh = c(80, 90, 95, 99, 99.9),
+                                                 plot = TRUE)
+dev.off()</code></pre>
+        
+        <div class="image-container">
+          <figure>
+            <img src="contorno2.png" 
+                 alt="Mean shapes visualization"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 2: Average shapes by species</figcaption>
+          </figure>
+          
+          <figure>
+            <img src="contorno3.png" 
+                 alt="Contour stack plot"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 3: Centered contour stack</figcaption>
+          </figure>
+          
+          <figure>
+            <img src="contorno4.png" 
+                 alt="Harmonic calibration plot"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 4: Harmonic calibration (cumulative variance)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="step">
+        <h4>Step 6 - Run EFA</h4>
+        <pre><code># Perform Elliptical Fourier Analysis
+lf_fou <- efourier(x = lf_out,    # Shape coordinate data
+                   nb.h = 8,      # Number of harmonics (from calibration)
+                   norm = FALSE)   # No normalization</code></pre>
+        
+      <div class="step">
+        <h4>Step 7 - PCA and LDA analysis</h4>
+        <pre><code># Principal Component Analysis
+png("Imagens_prontas/pca_esteril_sproces.png", width = 10, height = 8, units = "in", res = 300)
+lf_pca <- PCA(x = lf_fou, fac = lf_fou$fac)
+plot_PCA(x = lf_pca, f = lf_pca$Type, palette = pal_manual(my_colors, transp = 0))
+dev.off()
+
+# Linear Discriminant Analysis
+png("Imagens_prontas/lda_esteril_sproces.png", width = 10, height = 8, units = "in", res = 300)
+lf_lda <- LDA(x = lf_fou, fac = lf_fou$Type)
+plot_LDA(x = lf_lda, palette = pal_manual(my_colors, transp = 0))
+
+# Check LDA accuracy
+lf_fou %>% LDA(~Type) # 48% accuracy
+dev.off()</code></pre>
+        
+        <div class="image-container">
+          <figure>
+            <img src="contorno5.png" 
+                 alt="PCA results plot"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 5: Principal Component Analysis (PCA)</figcaption>
+          </figure>
+          
+          <figure>
+            <img src="contorno6.png" 
+                 alt="LDA results plot"
+                 style="width:100%; max-width:600px;">
+            <figcaption>Figure 6: Linear Discriminant Analysis (LDA)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips">
+      <h4>Pro Tips</h4>
+      <div class="tip-card">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Step 3:</strong> In the next step, remember to create an excel.xlsx file, in which one column must contain the same names as the species coordinate files.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Image resolution:</strong> Use 300 DPI for publication-quality figures.</p>
+      </div>
+      <div class="tip-card">
+        <i class="fas fa-lightbulb"></i>
+        <p><strong>Accessibility:</strong> Always include descriptive alt text for images.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Seção Comentários -->
+  <section id="comentarios" class="project-card">
+    <h2>Comments</h2>
+    <div>
+      <input type="text" id="nome" placeholder="Your name" />
+      <textarea id="comentario" placeholder="Your comment" rows="4"></textarea>
+      <button id="btnEnviar">Submit Comment</button>
+    </div>
+    <h3>Recent comments</h3>
+    <ul id="lista-comentarios"></ul>
+  </section>
+
+  <!-- Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2-3Shi8jr4Ztt2GGIHQyUsK5WsP1Zkq0",
+      authDomain: "comentariossamambaias.firebaseapp.com",
+      databaseURL: "https://comentariossamambaias-default-rtdb.firebaseio.com",
+      projectId: "comentariossamambaias",
+      storageBucket: "comentariossamambaias.appspot.com",
+      messagingSenderId: "487696893641",
+      appId: "1:487696893641:web:3c3996aa83ee82c24d2f18"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const comentariosRef = ref(db, 'comentarios');
+
+    document.getElementById('btnEnviar').addEventListener('click', () => {
+      const nome = document.getElementById('nome').value.trim();
+      const texto = document.getElementById('comentario').value.trim();
+      if (!nome || !texto) return alert('Please fill in name and comment');
+
+      const novoComentario = push(comentariosRef);
+      set(novoComentario, { nome, texto, timestamp: Date.now() });
+      document.getElementById('nome').value = '';
+      document.getElementById('comentario').value = '';
+    });
+
+    onValue(query(comentariosRef, orderByChild('timestamp')), (snapshot) => {
+      const lista = document.getElementById('lista-comentarios');
+      lista.innerHTML = '';
+      snapshot.forEach(child => {
+        const { nome, texto } = child.val();
+        const li = document.createElement('li');
+        li.textContent = `${nome}: ${texto}`;
+        lista.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>
