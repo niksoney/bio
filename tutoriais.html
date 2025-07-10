@@ -383,11 +383,69 @@
     .project-card h3 {
         color: var(--verde-escuro);
     }
+
+/* Estilo do menu hambúrguer */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsividade - menu hambúrguer */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        text-align: center;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-links.show {
+        display: flex;
+    }
+    
+    .nav-links a {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+    }
+}
 </style>
     </style>
 </head>
 <body>
+    <script>
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('show');
+    }
+    
+    // Fechar o menu quando um link for clicado
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                document.getElementById('navLinks').classList.remove('show');
+            }
+        });
+    });
+</script>
    <nav>
+<div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+</div>
+<div class="nav-links" id="navLinks">
     <a href="index.html#sobre">About me</a>
     <a href="projetos.html">Projects and collaborations</a>
     <a href="curriculo.html">Curriculum</a>
