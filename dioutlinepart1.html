@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diaoutline | Niksoneybio</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    :root {
+      --verde-escuro: #2E8B57;
+      --verde-claro: #3CB371;
+      --fundo-claro: #F5F5F5;
+      --texto-escuro: #333;
+    }
+
+    nav a.active {
+      font-weight: bold;
+      color: white;
+      border-bottom: 2px solid white;
+    }
+
+    /* Seção comentários */
+    #comentarios {
+      max-width: 700px;
+      margin: 2rem auto;
+      background: white;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    #comentarios input,
+    #comentarios textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+    }
+
+    #comentarios button {
+      background-color: var(--verde-escuro);
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    #comentarios button:hover {
+      background-color: var(--verde-claro);
+    }
+
+    #lista-comentarios {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    #lista-comentarios li {
+      background: #f5f5f5;
+      padding: 8px;
+      margin-bottom: 8px;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+   
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--fundo-claro);
+            color: var(--texto-escuro);
+        }
+        
+        header {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('imagens/contracapa.jpg') center/cover no-repeat;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile {
+            margin: 0 auto;
+            text-align: center;
+            padding: 10px 0;
+            max-width: 500px;
+        }
+        
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 8px;
+        }
+        
+        .profile h2 {
+            margin: 0.3rem 0;
+            line-height: 1.3;
+            font-weight: 500;
+        }
+        
+        .profile h2:first-of-type {
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+        
+        .profile h2:last-of-type {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .welcome-message {
+            background-color: rgba(255,255,255,0.2);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 15px auto;
+            max-width: 700px;
+            font-style: italic;
+            backdrop-filter: blur(4px);
+            font-size: 0.90rem;
+        }
+        
+        nav {
+            background-color: var(--verde-escuro);
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        
+        section h2 {
+            color: var(--verde-escuro);
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--verde-claro);
+            margin-bottom: 20px;
+        }
+        
+        .project-card h3 {
+            color: var(--verde-escuro);
+        }
+
+        /* Estilos específicos para a seção de tutorial */
+        .text-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .justified-text {
+            text-align: justify;
+            text-justify: inter-word;
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #444;
+            hyphens: auto;
+        }
+
+        .installation-steps {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        .step:last-child {
+            border-bottom: none;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background-color: var(--verde-escuro);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: var(--verde-claro);
+            transform: translateY(-2px);
+        }
+
+        .note {
+            font-style: italic;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .tip-card {
+            background-color: #fffde7;
+            padding: 15px;
+            border-left: 4px solid #ffd600;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tip-card i {
+            color: var(--verde-escuro);
+            font-size: 1.2em;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Estilos para os passos detalhados */
+        .detailed-steps {
+            background-color: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 30px 0;
+        }
+
+        .tutorial-steps {
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+
+        .tutorial-steps li {
+            counter-increment: step-counter;
+            list-style-type: none;
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 25px;
+        }
+
+        .tutorial-steps li:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .tutorial-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: var(--verde-escuro);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .tutorial-steps li strong {
+            color: var(--verde-escuro);
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .tutorial-steps li p {
+            margin: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .profile {
+                padding: 15px;
+            }
+            
+            .text-section {
+                padding: 0 10px;
+            }
+            
+            .tutorial-steps li {
+                padding-left: 40px;
+            }
+            
+            .tutorial-steps li::before {
+                width: 28px;
+                height: 28px;
+                font-size: 0.9em;
+            }
+        }
+
+        nav a.active {
+    font-weight: bold;
+    color: white; /* ou qualquer estilo que desejar */
+    border-bottom: 2px solid white;
+}
+
+/* Estilo do menu hambúrguer */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 24px;
+    color: white;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsividade - menu hambúrguer */
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+        text-align: center;
+    }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .nav-links.show {
+        display: flex;
+    }
+    
+    .nav-links a {
+        display: block;
+        margin: 5px 0;
+        padding: 10px;
+    }
+}
+
+</style>
+    </style>
+</head>
+<script>
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('show');
+    }
+    
+    // Fechar o menu quando um link for clicado
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                document.getElementById('navLinks').classList.remove('show');
+            }
+        });
+    });
+</script>
+<body>
+     <nav>
+    <div class="hamburger" onclick="toggleMenu()">
+    <i class="fas fa-bars"></i>
+</div>
+<div class="nav-links" id="navLinks">
+    <a href="../index.html#sobre">About me</a>
+    <a href="../projetos.html">Projects and collaborations</a>
+    <a href="../curriculo.html">Curriculum</a>
+    <a href="../galeria.html">Photos</a>
+    <a href="../tutoriais.html"class="active">Tutorials and reviews</a>
+    <a href="../contato.html">Contact</a>
+</nav>
+
+    <!-- Seção do Tutorial -->
+    <section id="tutorial">
+  <div style="position: relative;">
+    <h2>DiaOutline tutorial</h2>
+    <p style="position: absolute; right: 0; bottom: 0; font-style: italic; color: #555; margin: 6;">
+      Tutorial developed by Niksoney A. Mendonça
+    </p>
+  </div>
+        
+        <div class="text-section">
+            <h3>Extracting Contours for Morphometric Studies</h3>
+            <p class="justified-text">
+                Welcome to the DiaOutline repository, a powerful and intuitive tool for extracting contours from images, specially designed for morphometric studies in plant biology and related areas. This software, developed by Wishkerman & Hamilton (2018), uses advanced image processing techniques and Fourier analysis to extract precise contours of objects, such as leaves, fronds and other biological structures. Here, you will find a detailed step-by-step guide to installing and using DiaOutline, from setting up the environment to extracting and exporting data for statistical analysis. In addition, we provide download links for the necessary versions of the software and practical tips to optimize the processing of your images.
+            </p>
+
+            <h4>What you will find here:</h4>
+            <ul>
+                <li>Detailed instructions for installing Matlab Runtime and DiaOutline</li>
+                <li>Step-by-step guide to image processing</li>
+                <li>Tips for preparing images</li>
+                <li>Download links</li>
+            </ul>
+
+            <h4>Let's get started:</h4>
+            <div class="installation-steps">
+                <div class="step">
+                    <h5>Step 1 - Install Matlab Runtime</h5>
+                    <p>Download and install Matlab Runtime 9.3 (only this version works):</p>
+                    <a href="http://www.mathworks.com/products/compiler/mcr/index.html" class="download-btn">
+                        <i class="fas fa-download"></i> Download Matlab Runtime
+                    </a>
+                </div>
+                
+                <div class="step">
+                    <h5>Step 2 - Install DiaOutline</h5>
+                    <p>Download and install DiaOutline from GitHub or our alternative link:</p>
+                    <div class="download-links">
+                        <a href="https://github.com/wishkerman/DiaOutline" class="download-btn">
+                            <i class="fab fa-github"></i> GitHub Repository
+                        </a>
+                        <a href="https://1drv.ms/f/s!AtpCyvNefO09gdBDG-Nfu6We_T3ajQ?e=ld3XSH" class="download-btn">
+                            <i class="fas fa-cloud-download-alt"></i> OneDrive
+                        </a>
+                    </div>
+                    <p class="note">Note: Remember to download the entire folder and unzip it on your computer.</p>
+                </div>
+            </div>
+
+            <div class="processing-guide">
+                <h4>Image Processing Guide</h4>
+                <p>For best results, prepare your images with clean backgrounds (preferably in .png format). You can use:</p>
+                <ul>
+                    <li><a href="https://www.gimp.org/">GIMP</a> (free alternative)</li>
+                    <li><a href="https://photoshop.adobe.com/discover/">Adobe Photoshop</a> (paid version)</li>
+                </ul>
+                
+                <div class="tutorial-image">
+                    <img src="diaoutline.png" alt="DiaOutline screenshot" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <p class="image-caption">DiaOutline interface with contour extraction process</p>
+                </div>
+            </div>
+
+            <ol class="tutorial-steps">
+                <li>
+                    <strong>Select working folder</strong>
+                    <p>In this option, you will define your directory, i.e., the folder where all the images are located (you won't see any images here, so don't worry).</p>
+                </li>
+                
+                <li>
+                    <strong>Load image</strong>
+                    <p>Here you will select an image to start the process. Keep in mind that this process can take some time because it processes one image at a time.</p>
+                </li>
+                
+                <li>
+                    <strong>Change contrast</strong>
+                    <p>Adjust the contrast of the image to improve the visibility of the fronds and outlines.</p>
+                </li>
+                
+                <li>
+                    <strong>Threshold image</strong>
+                    <p>Apply thresholding to separate the objects of interest from the background. This will create a binary image where the outlines of the fronds will be easier to identify.</p>
+                </li>
+                
+                <li>
+                    <strong>Invert image</strong>
+                    <p>Invert the binary image if necessary to ensure that the fronds are highlighted in white on a black background.</p>
+                </li>
+                
+                <li>
+                    <strong>Fill image</strong>
+                    <p>Fill in any internal holes in the fronds, ensuring that the object is solid and without flaws before proceeding.</p>
+                </li>
+                
+                <li>
+                    <strong>Max. value (pixel) for removal</strong>
+                    <p>Set the maximum pixel value for the removal of small objects or noise that are not of interest.</p>
+                </li>
+                
+                <li>
+                    <strong>Remove small objects</strong>
+                    <p>Remove small objects or artifacts that may be present in the image, leaving only the fronds of interest.</p>
+                </li>
+                
+                <li>
+                    <strong>Trace outline</strong>
+                    <p>Start the process of tracing the outlines of the fronds. This step will extract the precise outlines of the fronds (or other objects of interest), which will be used for further analysis.</p>
+                </li>
+                
+                <li>
+                    <strong>Save file name pattern</strong>
+                    <p>Here you will define the name of the image (don't worry, you can update the name later in step 15).</p>
+                </li>
+                
+                <li>
+                    <strong>Generate data</strong>
+                    <p>Generate the outline data, such as the coordinates of the points, which can be exported for further analysis in R.</p>
+                </li>
+                
+                <li>
+                    <strong>Save data</strong>
+                    <p>Your data will be saved in .TXT format for use in other tools or statistical analyses.</p>
+                </li>
+                
+                <li>
+                    <strong>Visualization in the environment</strong>
+                    <p>In this environment, you will visualize the images of the board from which you are extracting the outlines. In the example, there are two leaves and two numbers, 1 and 2, which means that it extracted two different shapes from this image.</p>
+                </li>
+                
+                <li>
+                    <strong>Data visualization</strong>
+                    <p>In this step, you will have three columns with information. Column 1: the number of the outline visualized in step 14. Column 2: the values corresponding to the outline of each image; these are the values we will use in R for analysis. Column 3: the name of the species you defined in step 11, remembering that you can change the name here.</p>
+                </li>
+                
+                <li>
+                    <strong>Save Image (TIFF or PNG)</strong>
+                    <p>Here you can save the exact image you are visualizing in the interface from step 14 (note that it is only useful for visualization and is not necessary for the images).</p>
+                </li>
+                
+                <li>
+                    <strong>Quit</strong>
+                    <p>Here you finish and close the program.</p>
+                </li>
+            </ol>
+
+            <div class="tips">
+                <h4>Pro Tips</h4>
+                <div class="tip-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>When mounting photo boards, make one per exsiccate for better organization</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <p>Check the threshold carefully to avoid extracting artifacts</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Seção Comentários -->
+  <section id="comentarios" class="project-card">
+    <h2>Comments</h2>
+  
+    <div>
+      <input type="text" id="nome" placeholder="Your name" />
+      <textarea id="comentario" placeholder="Your comment" rows="4"></textarea>
+      <button id="btnEnviar">Submit Comment</button>
+    </div>
+
+    <h3>Recent comments</h3>
+    <ul id="lista-comentarios"></ul>
+  </section>
+
+ <!-- Rodapé com créditos -->
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9em; border-top: 1px solid #eee; margin-top: 40px;">
+    <p>  Tutorial developed by Niksoney A. Mendonça | © <script>document.write(new Date().getFullYear())</script></p>
+  </footer>
+
+  <!-- Script Firebase -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, push, set, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB2-3Shi8jr4Ztt2GGIHQyUsK5WsP1Zkq0",
+      authDomain: "comentariossamambaias.firebaseapp.com",
+      databaseURL: "https://comentariossamambaias-default-rtdb.firebaseio.com",
+      projectId: "comentariossamambaias",
+      storageBucket: "comentariossamambaias.firebasestorage.app",
+      messagingSenderId: "487696893641",
+      appId: "1:487696893641:web:3c3996aa83ee82c24d2f18",
+      measurementId: "G-CVHRVJYW2C"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const comentariosRef = ref(db, 'comentarios');
+
+    const enviarComentario = () => {
+      const nome = document.getElementById('nome').value.trim();
+      const texto = document.getElementById('comentario').value.trim();
+
+      if (!nome || !texto) {
+        alert('Por favor, preencha nome e comentário');
+        return;
+      }
+
+      const novoComentarioRef = push(comentariosRef);
+      set(novoComentarioRef, {
+        nome: nome,
+        texto: texto,
+        timestamp: Date.now()
+      });
+
+      document.getElementById('nome').value = '';
+      document.getElementById('comentario').value = '';
+    };
+
+    document.getElementById('btnEnviar').addEventListener('click', enviarComentario);
+
+    const listaComentarios = document.getElementById('lista-comentarios');
+    const comentariosOrdenados = query(comentariosRef, orderByChild('timestamp'));
+
+    onValue(comentariosOrdenados, (snapshot) => {
+      listaComentarios.innerHTML = '';
+      snapshot.forEach(childSnapshot => {
+        const item = childSnapshot.val();
+        const li = document.createElement('li');
+        li.textContent = `${item.nome}: ${item.texto}`;
+        listaComentarios.appendChild(li);
+      });
+    });
+  </script>
+</body>
+</html>
