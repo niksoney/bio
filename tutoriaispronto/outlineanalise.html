@@ -34,9 +34,10 @@
     .hamburger {
       display: none;
       cursor: pointer;
+      padding: 10px;
       font-size: 24px;
       color: white;
-    }
+}
 
     .nav-links {
       display: flex;
@@ -65,24 +66,27 @@
     }
 
     @media (max-width: 768px) {
-      .hamburger {
+    .hamburger {
         display: block;
-      }
-
-      .nav-links {
+        text-align: center;
+    }
+    
+    .nav-links {
         display: none;
         flex-direction: column;
-      }
-
-      .nav-links.show {
+        width: 100%;
+    }
+    
+    .nav-links.show {
         display: flex;
-      }
-
-      .nav-links a {
+    }
+    
+    .nav-links a {
+        display: block;
         margin: 5px 0;
         padding: 10px;
-      }
     }
+}
 
     section {
       padding: 2rem;
@@ -282,7 +286,13 @@ figcaption {
 
 <!-- Seção do Tutorial -->
 <section id="tutorial">
-  <h2>Elliptical Fourier Analysis in R</h2>
+  <div style="position: relative;">
+    <h2>Elliptical Fourier Analysis in R</h2>
+    <p style="position: absolute; right: 0; bottom: 0; font-style: italic; color: #555; margin: 6;">
+      Tutorial developed by Niksoney A. Mendonça
+    </p>
+  </div>
+  
   <div class="text-section">
     <p class="justified-text">
       This tutorial explains how to perform <strong>Elliptical Fourier Analysis (EFA)</strong> using the <code>Momocs</code> package in R. It includes data import, harmonics calibration, PCA and LDA — applied to eight fern species with both fertile and sterile leaves.
@@ -466,6 +476,11 @@ dev.off()</code></pre>
     <h3>Recent comments</h3>
     <ul id="lista-comentarios"></ul>
   </section>
+
+  <!-- Rodapé com créditos -->
+  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9em; border-top: 1px solid #eee; margin-top: 40px;">
+    <p>Tutorial desenvolvido por Niksoneybio | © <script>document.write(new Date().getFullYear())</script></p>
+  </footer>
 
   <!-- Firebase -->
   <script type="module">
