@@ -3,27 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Sent | Niksoneybio</title>
+    <title>Message Sent Successfully | Niksoneybio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: 'Arial', sans-serif;
             background-color: #F5F5F5;
             text-align: center;
             padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         h1 {
             color: #2E8B57;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 30px;
+            font-size: 1.1em;
         }
         a {
-            color: #2E8B57;
+            color: white;
             text-decoration: none;
             font-weight: bold;
+            background-color: #2E8B57;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        a:hover {
+            background-color: #3CB371;
+            transform: translateY(-2px);
+        }
+        .check-icon {
+            font-size: 3em;
+            color: #2E8B57;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>✅ Message sent successfully!</h1>
-    <p>Thank you for contacting me. I will respond shortly.</p>
-    <p><a href="index.html">Return to home page</a></p>
+    <div class="container">
+        <div class="check-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>Message sent successfully!</h1>
+        <p>Thank you for contacting me. I will respond to your message as soon as possible.</p>
+        <a href="index.html">Return to home page</a>
+    </div>
 </body>
 </html>
