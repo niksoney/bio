@@ -1,75 +1,76 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diaoutline | Niksoneybio</title>
-  <link rel="icon" href="imagens/simb.png" type="image/png">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  
-  <style>
-    :root {
-      --verde-escuro: #2E8B57;
-      --verde-claro: #3CB371;
-      --fundo-claro: #F5F5F5;
-      --texto-escuro: #333;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diaoutline | Niksoneybio</title>
+    <link rel="icon" href="imagens/simb.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    nav a.active {
-      font-weight: bold;
-      color: white;
-      border-bottom: 2px solid white;
-    }
+    <style>
+        :root {
+            --verde-escuro: #2E8B57;
+            --verde-claro: #3CB371;
+            --fundo-claro: #F5F5F5;
+            --texto-escuro: #333;
+        }
 
-    /* Seção comentários */
-    #comentarios {
-      max-width: 700px;
-      margin: 2rem auto;
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
+        nav a.active {
+            font-weight: bold;
+            color: white;
+            border-bottom: 2px solid white;
+        }
 
-    #comentarios input,
-    #comentarios textarea {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      font-family: inherit;
-      font-size: 1rem;
-      resize: vertical;
-    }
+        /* Seção comentários */
+        #comentarios {
+            max-width: 700px;
+            margin: 2rem auto;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
 
-    #comentarios button {
-      background-color: var(--verde-escuro);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
+        #comentarios input,
+        #comentarios textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+            resize: vertical;
+        }
 
-    #comentarios button:hover {
-      background-color: var(--verde-claro);
-    }
+        #comentarios button {
+            background-color: var(--verde-escuro);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
 
-    #lista-comentarios {
-      list-style: none;
-      padding-left: 0;
-    }
+        #comentarios button:hover {
+            background-color: var(--verde-claro);
+        }
 
-    #lista-comentarios li {
-      background: #f5f5f5;
-      padding: 8px;
-      margin-bottom: 8px;
-      border-radius: 4px;
-      font-size: 0.95rem;
-    }
-   
+        #lista-comentarios {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        #lista-comentarios li {
+            background: #f5f5f5;
+            padding: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -78,52 +79,52 @@
             background-color: var(--fundo-claro);
             color: var(--texto-escuro);
         }
-        
+
         header {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('imagens/contracapa.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('imagens/contracapa.jpg') center/cover no-repeat;
             color: white;
             padding: 2rem 1rem;
             text-align: center;
             position: relative;
         }
-        
+
         .profile {
             margin: 0 auto;
             text-align: center;
             padding: 10px 0;
             max-width: 500px;
         }
-        
+
         .profile-img {
             width: 140px;
             height: 140px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-bottom: 8px;
         }
-        
+
         .profile h2 {
             margin: 0.3rem 0;
             line-height: 1.3;
             font-weight: 500;
         }
-        
+
         .profile h2:first-of-type {
             font-size: 1.4rem;
             margin-top: 5px;
         }
-        
+
         .profile h2:last-of-type {
             font-size: 1.1rem;
             margin-bottom: 5px;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
         }
-        
+
         .welcome-message {
-            background-color: rgba(255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.2);
             padding: 12px;
             border-radius: 6px;
             margin: 15px auto;
@@ -132,7 +133,7 @@
             backdrop-filter: blur(4px);
             font-size: 0.90rem;
         }
-        
+
         nav {
             background-color: var(--verde-escuro);
             padding: 1rem;
@@ -141,7 +142,7 @@
             top: 0;
             z-index: 100;
         }
-        
+
         nav a {
             color: white;
             margin: 0 15px;
@@ -151,38 +152,38 @@
             border-radius: 5px;
             transition: background-color 0.3s;
         }
-        
+
         nav a:hover {
-            background-color: rgba(255,255,255,0.2);
+            background-color: rgba(255, 255, 255, 0.2);
         }
-        
+
         section {
             padding: 2rem;
             max-width: 1000px;
             margin: 0 auto;
         }
-        
+
         .project-card {
             background: white;
             border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             margin-bottom: 2rem;
             transition: transform 0.3s;
         }
-        
+
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
-        
+
         section h2 {
             color: var(--verde-escuro);
             padding-bottom: 10px;
             border-bottom: 2px solid var(--verde-claro);
             margin-bottom: 20px;
         }
-        
+
         .project-card h3 {
             color: var(--verde-escuro);
         }
@@ -269,7 +270,7 @@
             background-color: white;
             padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin: 30px 0;
         }
 
@@ -328,19 +329,19 @@
                 display: block;
                 margin: 5px 0;
             }
-            
+
             .profile {
                 padding: 15px;
             }
-            
+
             .text-section {
                 padding: 0 10px;
             }
-            
+
             .tutorial-steps li {
                 padding-left: 40px;
             }
-            
+
             .tutorial-steps li::before {
                 width: 28px;
                 height: 28px;
@@ -349,51 +350,51 @@
         }
 
         nav a.active {
-    font-weight: bold;
-    color: white; /* ou qualquer estilo que desejar */
-    border-bottom: 2px solid white;
-}
+            font-weight: bold;
+            color: white;
+            /* ou qualquer estilo que desejar */
+            border-bottom: 2px solid white;
+        }
 
-/* Estilo do menu hambúrguer */
-.hamburger {
-    display: none;
-    cursor: pointer;
-    padding: 10px;
-    font-size: 24px;
-    color: white;
-}
+        /* Estilo do menu hambúrguer */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 24px;
+            color: white;
+        }
 
-.nav-links {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-}
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
 
-/* Responsividade - menu hambúrguer */
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-        text-align: center;
-    }
-    
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .nav-links.show {
-        display: flex;
-    }
-    
-    .nav-links a {
-        display: block;
-        margin: 5px 0;
-        padding: 10px;
-    }
-}
+        /* Responsividade - menu hambúrguer */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+                text-align: center;
+            }
 
-</style>
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .nav-links a {
+                display: block;
+                margin: 5px 0;
+                padding: 10px;
+            }
+        }
+    </style>
     </style>
 </head>
 <script>
@@ -401,7 +402,7 @@
         const navLinks = document.getElementById('navLinks');
         navLinks.classList.toggle('show');
     }
-    
+
     // Fechar o menu quando um link for clicado
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
@@ -411,31 +412,39 @@
         });
     });
 </script>
+
 <body>
-     <nav>
-    <div class="hamburger" onclick="toggleMenu()">
-    <i class="fas fa-bars"></i>
-</div>
-<div class="nav-links" id="navLinks">
-    <a href="../index.html#sobre">About me</a>
-    <a href="../projetos.html">Projects and collaborations</a>
-    <a href="../curriculo.html">Curriculum</a>
-    <a href="../galeria.html">Photos</a>
-    <a href="../tutoriais.html"class="active">Tutorials and reviews</a>
-    <a href="../contato.html">Contact</a>
-</nav>
+    <nav>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../index.html#sobre">About me</a>
+            <a href="../projetos.html">Projects and collaborations</a>
+            <a href="../curriculo.html">Curriculum</a>
+            <a href="../galeria.html">Photos</a>
+            <a href="../tutoriais.html" class="active">Tutorials and reviews</a>
+            <a href="../contato.html">Contact</a>
+    </nav>
 
     <!-- Seção do Tutorial -->
     <section id="tutorial">
-  <div style="position: relative;">
-    <h2>DiaOutline tutorial</h2>
-    </p>
-  </div>
-        
+        <div style="position: relative;">
+            <h2>DiaOutline tutorial</h2>
+            </p>
+        </div>
+
         <div class="text-section">
             <h3>Extracting Contours for Morphometric Studies</h3>
             <p class="justified-text">
-                Welcome to the DiaOutline repository, a powerful and intuitive tool for extracting contours from images, specially designed for morphometric studies in plant biology and related areas. This software, developed by Wishkerman & Hamilton (2018), uses advanced image processing techniques and Fourier analysis to extract precise contours of objects, such as leaves, fronds and other biological structures. Here, you will find a detailed step-by-step guide to installing and using DiaOutline, from setting up the environment to extracting and exporting data for statistical analysis. In addition, we provide download links for the necessary versions of the software and practical tips to optimize the processing of your images.
+                Welcome to the DiaOutline repository, a powerful and intuitive tool for extracting contours from images,
+                specially designed for morphometric studies in plant biology and related areas. This software, developed
+                by Wishkerman & Hamilton (2018), uses advanced image processing techniques and Fourier analysis to
+                extract precise contours of objects, such as leaves, fronds and other biological structures. Here, you
+                will find a detailed step-by-step guide to installing and using DiaOutline, from setting up the
+                environment to extracting and exporting data for statistical analysis. In addition, we provide download
+                links for the necessary versions of the software and practical tips to optimize the processing of your
+                images.
             </p>
 
             <h4>What you will find here:</h4>
@@ -455,7 +464,7 @@
                         <i class="fas fa-download"></i> Download Matlab Runtime
                     </a>
                 </div>
-                
+
                 <div class="step">
                     <h5>Step 2 - Install DiaOutline</h5>
                     <p>Download and install DiaOutline from GitHub or our alternative link:</p>
@@ -473,14 +482,16 @@
 
             <div class="processing-guide">
                 <h4>Image Processing Guide</h4>
-                <p>For best results, prepare your images with clean backgrounds (preferably in .png format). You can use:</p>
+                <p>For best results, prepare your images with clean backgrounds (preferably in .png format). You can
+                    use:</p>
                 <ul>
                     <li><a href="https://www.gimp.org/">GIMP</a> (free alternative)</li>
                     <li><a href="https://photoshop.adobe.com/discover/">Adobe Photoshop</a> (paid version)</li>
                 </ul>
-                
+
                 <div class="tutorial-image">
-                    <img src="diaoutline.png" alt="DiaOutline screenshot" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                    <img src="diaoutline.png" alt="DiaOutline screenshot"
+                        style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
                     <p class="image-caption">DiaOutline interface with contour extraction process</p>
                 </div>
             </div>
@@ -488,79 +499,96 @@
             <ol class="tutorial-steps">
                 <li>
                     <strong>Select working folder</strong>
-                    <p>In this option, you will define your directory, i.e., the folder where all the images are located (you won't see any images here, so don't worry).</p>
+                    <p>In this option, you will define your directory, i.e., the folder where all the images are located
+                        (you won't see any images here, so don't worry).</p>
                 </li>
-                
+
                 <li>
                     <strong>Load image</strong>
-                    <p>Here you will select an image to start the process. Keep in mind that this process can take some time because it processes one image at a time.</p>
+                    <p>Here you will select an image to start the process. Keep in mind that this process can take some
+                        time because it processes one image at a time.</p>
                 </li>
-                
+
                 <li>
                     <strong>Change contrast</strong>
                     <p>Adjust the contrast of the image to improve the visibility of the fronds and outlines.</p>
                 </li>
-                
+
                 <li>
                     <strong>Threshold image</strong>
-                    <p>Apply thresholding to separate the objects of interest from the background. This will create a binary image where the outlines of the fronds will be easier to identify.</p>
+                    <p>Apply thresholding to separate the objects of interest from the background. This will create a
+                        binary image where the outlines of the fronds will be easier to identify.</p>
                 </li>
-                
+
                 <li>
                     <strong>Invert image</strong>
-                    <p>Invert the binary image if necessary to ensure that the fronds are highlighted in white on a black background.</p>
+                    <p>Invert the binary image if necessary to ensure that the fronds are highlighted in white on a
+                        black background.</p>
                 </li>
-                
+
                 <li>
                     <strong>Fill image</strong>
-                    <p>Fill in any internal holes in the fronds, ensuring that the object is solid and without flaws before proceeding.</p>
+                    <p>Fill in any internal holes in the fronds, ensuring that the object is solid and without flaws
+                        before proceeding.</p>
                 </li>
-                
+
                 <li>
                     <strong>Max. value (pixel) for removal</strong>
-                    <p>Set the maximum pixel value for the removal of small objects or noise that are not of interest.</p>
+                    <p>Set the maximum pixel value for the removal of small objects or noise that are not of interest.
+                    </p>
                 </li>
-                
+
                 <li>
                     <strong>Remove small objects</strong>
-                    <p>Remove small objects or artifacts that may be present in the image, leaving only the fronds of interest.</p>
+                    <p>Remove small objects or artifacts that may be present in the image, leaving only the fronds of
+                        interest.</p>
                 </li>
-                
+
                 <li>
                     <strong>Trace outline</strong>
-                    <p>Start the process of tracing the outlines of the fronds. This step will extract the precise outlines of the fronds (or other objects of interest), which will be used for further analysis.</p>
+                    <p>Start the process of tracing the outlines of the fronds. This step will extract the precise
+                        outlines of the fronds (or other objects of interest), which will be used for further analysis.
+                    </p>
                 </li>
-                
+
                 <li>
                     <strong>Save file name pattern</strong>
-                    <p>Here you will define the name of the image (don't worry, you can update the name later in step 15).</p>
+                    <p>Here you will define the name of the image (don't worry, you can update the name later in step
+                        15).</p>
                 </li>
-                
+
                 <li>
                     <strong>Generate data</strong>
-                    <p>Generate the outline data, such as the coordinates of the points, which can be exported for further analysis in R.</p>
+                    <p>Generate the outline data, such as the coordinates of the points, which can be exported for
+                        further analysis in R.</p>
                 </li>
-                
+
                 <li>
                     <strong>Save data</strong>
                     <p>Your data will be saved in .TXT format for use in other tools or statistical analyses.</p>
                 </li>
-                
+
                 <li>
                     <strong>Visualization in the environment</strong>
-                    <p>In this environment, you will visualize the images of the board from which you are extracting the outlines. In the example, there are two leaves and two numbers, 1 and 2, which means that it extracted two different shapes from this image.</p>
+                    <p>In this environment, you will visualize the images of the board from which you are extracting the
+                        outlines. In the example, there are two leaves and two numbers, 1 and 2, which means that it
+                        extracted two different shapes from this image.</p>
                 </li>
-                
+
                 <li>
                     <strong>Data visualization</strong>
-                    <p>In this step, you will have three columns with information. Column 1: the number of the outline visualized in step 14. Column 2: the values corresponding to the outline of each image; these are the values we will use in R for analysis. Column 3: the name of the species you defined in step 11, remembering that you can change the name here.</p>
+                    <p>In this step, you will have three columns with information. Column 1: the number of the outline
+                        visualized in step 14. Column 2: the values corresponding to the outline of each image; these
+                        are the values we will use in R for analysis. Column 3: the name of the species you defined in
+                        step 11, remembering that you can change the name here.</p>
                 </li>
-                
+
                 <li>
                     <strong>Save Image (TIFF or PNG)</strong>
-                    <p>Here you can save the exact image you are visualizing in the interface from step 14 (note that it is only useful for visualization and is not necessary for the images).</p>
+                    <p>Here you can save the exact image you are visualizing in the interface from step 14 (note that it
+                        is only useful for visualization and is not necessary for the images).</p>
                 </li>
-                
+
                 <li>
                     <strong>Quit</strong>
                     <p>Here you finish and close the program.</p>
@@ -585,79 +613,381 @@
         </div>
     </section>
 
-  <!-- Seção Comentários -->
-  <section id="comentarios" class="project-card">
-    <h2>Comments</h2>
-  
-    <div>
-      <input type="text" id="nome" placeholder="Your name" />
-      <textarea id="comentario" placeholder="Your comment" rows="4"></textarea>
-      <button id="btnEnviar">Submit Comment</button>
-    </div>
+    <!-- Seção Comentários -->
+    <section id="comentarios" class="project-card">
+        <h2>Comments</h2>
 
-    <h3>Recent comments</h3>
-    <ul id="lista-comentarios"></ul>
-  </section>
+        <div>
+            <input type="text" id="nome" placeholder="Your name" />
+            <textarea id="comentario" placeholder="Your comment" rows="4"></textarea>
+            <button id="btnEnviar">Submit Comment</button>
+        </div>
 
- <!-- Rodapé com créditos -->
-  <footer style="text-align: center; padding: 20px; color: #666; font-size: 0.9em; border-top: 1px solid #eee; margin-top: 40px;">
-    <p>  Tutorial developed by Niksoney A. Mendonça | © <script>document.write(new Date().getFullYear())</script></p>
-  </footer>
+        <h3>Recent comments</h3>
+        <ul id="lista-comentarios"></ul>
+    </section>
 
-  <!-- Script Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
-    import { getDatabase, ref, push, set, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+    <!-- Rodapé com créditos -->
+    <footer
+        style="text-align: center; padding: 20px; color: #666; font-size: 0.9em; border-top: 1px solid #eee; margin-top: 40px;">
+        <p> Tutorial developed by Niksoney A. Mendonça | ©
+            <script>document.write(new Date().getFullYear())</script>
+        </p>
+    </footer>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyB2-3Shi8jr4Ztt2GGIHQyUsK5WsP1Zkq0",
-      authDomain: "comentariossamambaias.firebaseapp.com",
-      databaseURL: "https://comentariossamambaias-default-rtdb.firebaseio.com",
-      projectId: "comentariossamambaias",
-      storageBucket: "comentariossamambaias.firebasestorage.app",
-      messagingSenderId: "487696893641",
-      appId: "1:487696893641:web:3c3996aa83ee82c24d2f18",
-      measurementId: "G-CVHRVJYW2C"
-    };
+    <!-- Script Firebase -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        import { getDatabase, ref, push, set, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app);
-    const comentariosRef = ref(db, 'comentarios');
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2-3Shi8jr4Ztt2GGIHQyUsK5WsP1Zkq0",
+            authDomain: "comentariossamambaias.firebaseapp.com",
+            databaseURL: "https://comentariossamambaias-default-rtdb.firebaseio.com",
+            projectId: "comentariossamambaias",
+            storageBucket: "comentariossamambaias.firebasestorage.app",
+            messagingSenderId: "487696893641",
+            appId: "1:487696893641:web:3c3996aa83ee82c24d2f18",
+            measurementId: "G-CVHRVJYW2C"
+        };
 
-    const enviarComentario = () => {
-      const nome = document.getElementById('nome').value.trim();
-      const texto = document.getElementById('comentario').value.trim();
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const auth = getAuth(app);
+        const comentariosRef = ref(db, 'comentarios');
 
-      if (!nome || !texto) {
-        alert('Por favor, preencha nome e comentário');
-        return;
-      }
+        // Elementos
+        const btnEnviar = document.getElementById('btnEnviar');
+        const btnLogin = document.createElement('button');
+        btnLogin.textContent = 'Login with Google';
+        btnLogin.style = 'background:#4285F4;color:white;border:none;padding:10px 15px;border-radius:5px;cursor:pointer;margin-bottom:10px;display:block;';
+        const btnLogout = document.createElement('button');
+        btnLogout.textContent = 'Logout';
+        btnLogout.style = 'background:#aaa;color:white;border:none;padding:8px 12px;border-radius:5px;cursor:pointer;margin-left:10px;';
+        const comentariosDiv = document.getElementById('comentarios');
+        const nomeInput = document.getElementById('nome');
+        const comentarioInput = document.getElementById('comentario');
 
-      const novoComentarioRef = push(comentariosRef);
-      set(novoComentarioRef, {
-        nome: nome,
-        texto: texto,
-        timestamp: Date.now()
-      });
+        // Adiciona botão de login antes do campo nome
+        nomeInput.parentNode.insertBefore(btnLogin, nomeInput);
 
-      document.getElementById('nome').value = '';
-      document.getElementById('comentario').value = '';
-    };
+        // Estado de autenticação
+        let usuarioAtual = null;
+        onAuthStateChanged(auth, (user) => {
+            usuarioAtual = user;
+            if (user) {
+                btnLogin.style.display = 'none';
+                btnLogout.style.display = 'inline-block';
+                nomeInput.value = user.displayName || '';
+                nomeInput.disabled = true;
+                if (!btnLogout.parentNode) btnLogin.parentNode.insertBefore(btnLogout, btnLogin.nextSibling);
+            } else {
+                btnLogin.style.display = 'block';
+                btnLogout.style.display = 'none';
+                nomeInput.value = '';
+                nomeInput.disabled = false;
+            }
+        });
 
-    document.getElementById('btnEnviar').addEventListener('click', enviarComentario);
+        btnLogin.onclick = () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider).catch(e => alert('Erro ao autenticar: ' + e.message));
+        };
+        btnLogout.onclick = () => signOut(auth);
 
-    const listaComentarios = document.getElementById('lista-comentarios');
-    const comentariosOrdenados = query(comentariosRef, orderByChild('timestamp'));
+        // Envio de comentário exige login
+        const enviarComentario = () => {
+            const texto = comentarioInput.value.trim();
+            if (!usuarioAtual) {
+                alert('You must be logged in to comment!');
+                return;
+            }
+            if (!texto) {
+                alert('Please write a comment');
+                return;
+            }
+            const novoComentarioRef = push(comentariosRef);
+            set(novoComentarioRef, {
+                nome: usuarioAtual.displayName || 'Usuário',
+                texto: texto,
+                uid: usuarioAtual.uid,
+                foto: usuarioAtual.photoURL || '',
+                timestamp: Date.now()
+            });
+            comentarioInput.value = '';
+        };
+        btnEnviar.onclick = enviarComentario;
 
-    onValue(comentariosOrdenados, (snapshot) => {
-      listaComentarios.innerHTML = '';
-      snapshot.forEach(childSnapshot => {
-        const item = childSnapshot.val();
-        const li = document.createElement('li');
-        li.textContent = `${item.nome}: ${item.texto}`;
-        listaComentarios.appendChild(li);
-      });
-    });
-  </script>
+        // Listar comentários
+        const listaComentarios = document.getElementById('lista-comentarios');
+        const comentariosOrdenados = query(comentariosRef, orderByChild('timestamp'));
+        onValue(comentariosOrdenados, (snapshot) => {
+            listaComentarios.innerHTML = '';
+            snapshot.forEach(childSnapshot => {
+                const item = childSnapshot.val();
+                const key = childSnapshot.key;
+                const li = document.createElement('li');
+                // Mostra foto se disponível
+                if (item.foto) {
+                    const img = document.createElement('img');
+                    img.src = item.foto;
+                    img.alt = item.nome;
+                    img.style = 'width:24px;height:24px;border-radius:50%;vertical-align:middle;margin-right:6px;';
+                    li.appendChild(img);
+                }
+                // Texto do comentário
+                const spanTexto = document.createElement('span');
+                spanTexto.textContent = `${item.nome}: ${item.texto}`;
+                li.appendChild(spanTexto);
+
+                // Botão Curtir (apenas logado, visual moderno)
+                if (usuarioAtual) {
+                    const userId = usuarioAtual.uid;
+                    const jaCurtiu = item.likes && item.likes[userId];
+                    const btnLike = document.createElement('button');
+                    btnLike.innerHTML = `<i class="fa${jaCurtiu ? 's' : 'r'} fa-heart" style="color:${jaCurtiu ? '#2E8B57' : '#888'};margin-right:4px;"></i> <span style="vertical-align:middle;">${item.likes ? Object.keys(item.likes).length : 0}</span>`;
+                    btnLike.title = jaCurtiu ? 'Unlike' : 'Like';
+                    btnLike.style = 'margin-left:10px;background:transparent;color:#333;border:none;padding:4px 10px;border-radius:20px;cursor:pointer;font-size:1.1em;transition:background 0.2s;outline:none;';
+                    btnLike.onmouseover = () => btnLike.style.background = '#eafaf1';
+                    btnLike.onmouseout = () => btnLike.style.background = 'transparent';
+                    btnLike.onclick = () => {
+                        const likeRef = ref(db, `comentarios/${key}/likes/${userId}`);
+                        if (btnLike.classList.contains('liked')) {
+                            set(likeRef, null);
+                        } else {
+                            set(likeRef, true);
+                        }
+                    };
+                    if (jaCurtiu) {
+                        btnLike.classList.add('liked');
+                    } else {
+                        btnLike.classList.remove('liked');
+                    }
+                    li.appendChild(btnLike);
+                }
+
+                // Removido bloco duplicado do botão Responder
+
+                // Botão Editar (apenas autor)
+                if (usuarioAtual && usuarioAtual.uid === item.uid) {
+                    // Menu de três pontos
+                    const menuWrapper = document.createElement('div');
+                    menuWrapper.style = 'display:inline-block;position:relative;margin-left:8px;vertical-align:middle;';
+                    const btnMenu = document.createElement('button');
+                    btnMenu.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+                    btnMenu.title = 'Mais opções';
+                    btnMenu.style = 'background:transparent;color:#333;border:none;padding:4px 8px;border-radius:50%;cursor:pointer;font-size:1.2em;outline:none;';
+                    menuWrapper.appendChild(btnMenu);
+                    // Dropdown
+                    const dropdown = document.createElement('div');
+                    dropdown.style = 'display:none;position:absolute;right:0;top:28px;z-index:10;background:#fff;border:1px solid #ccc;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);min-width:110px;';
+                    // Editar
+                    const optEdit = document.createElement('button');
+                    optEdit.textContent = 'Edit';
+                    optEdit.style = 'display:block;width:100%;background:none;border:none;padding:8px 12px;text-align:left;color:#333;font-size:1em;cursor:pointer;border-radius:6px 6px 0 0;';
+                    optEdit.onmouseover = () => optEdit.style.background = '#f2f2f2';
+                    optEdit.onmouseout = () => optEdit.style.background = 'none';
+                    optEdit.onclick = () => {
+                        dropdown.style.display = 'none';
+                        if (li.querySelector('.edit-form')) return;
+                        const form = document.createElement('div');
+                        form.className = 'edit-form';
+                        const inputEdit = document.createElement('textarea');
+                        inputEdit.value = item.texto;
+                        inputEdit.style = 'width:100%;margin-bottom:4px;';
+                        const btnSalvar = document.createElement('button');
+                        btnSalvar.textContent = 'Salvar';
+                        btnSalvar.style = 'background:#2E8B57;color:white;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:0.9em;';
+                        btnSalvar.onclick = () => {
+                            const novoTexto = inputEdit.value.trim();
+                            if (!novoTexto) { alert('Comentário não pode ser vazio'); return; }
+                            set(ref(db, `comentarios/${key}/texto`), novoTexto);
+                            form.remove();
+                        };
+                        form.appendChild(inputEdit);
+                        form.appendChild(btnSalvar);
+                        li.appendChild(form);
+                    };
+                    dropdown.appendChild(optEdit);
+                    // Apagar
+                    const optDel = document.createElement('button');
+                    optDel.textContent = 'Delete';
+                    optDel.style = 'display:block;width:100%;background:none;border:none;padding:8px 12px;text-align:left;color:#dc3545;font-size:1em;cursor:pointer;border-radius:0 0 6px 6px;';
+                    optDel.onmouseover = () => optDel.style.background = '#fbeaea';
+                    optDel.onmouseout = () => optDel.style.background = 'none';
+                    optDel.onclick = () => {
+                        dropdown.style.display = 'none';
+                        if (confirm('Tem certeza que deseja apagar este comentário?')) {
+                            set(ref(db, `comentarios/${key}`), null);
+                        }
+                    };
+                    dropdown.appendChild(optDel);
+                    menuWrapper.appendChild(dropdown);
+                    btnMenu.onclick = (e) => {
+                        e.stopPropagation();
+                        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                    };
+                    // Fecha dropdown ao clicar fora
+                    document.addEventListener('click', function fecharMenu(e) {
+                        if (!menuWrapper.contains(e.target)) dropdown.style.display = 'none';
+                    });
+                    li.appendChild(menuWrapper);
+                }
+
+                // Botão Responder (apenas logado)
+                // Só mostra o botão Responder estilizado se não for o autor do comentário
+                if (usuarioAtual && usuarioAtual.uid !== item.uid) {
+                    const btnReply = document.createElement('button');
+                    btnReply.innerHTML = '<i class="fas fa-comment-dots"></i>';
+
+                    btnReply.title = 'Comment';
+                    btnReply.style = 'margin-left:10px;background:transparent;color:#2E8B57;border:1px solid #2E8B57;padding:4px 10px;border-radius:50%;cursor:pointer;font-size:1.15em;transition:background 0.2s;outline:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;';
+                    btnReply.onmouseover = () => btnReply.style.background = '#eafaf1';
+                    btnReply.onmouseout = () => btnReply.style.background = 'transparent';
+                    btnReply.onclick = () => {
+                        const existingForm = li.querySelector('.resposta-form');
+                        if (existingForm) {
+                            existingForm.remove();
+                        } else {
+                            const form = document.createElement('div');
+                            form.className = 'resposta-form';
+                            const inputResp = document.createElement('textarea');
+                            inputResp.placeholder = 'Your answer';
+                            inputResp.style = 'margin-bottom:4px;width:100%;border-radius:6px;border:1px solid #ccc;padding:6px;';
+                            const btnEnviarResp = document.createElement('button');
+                            btnEnviarResp.textContent = 'To send';
+                            btnEnviarResp.style = 'background:#2E8B57;color:white;border:none;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:0.95em;margin-top:4px;';
+                            btnEnviarResp.onclick = () => {
+                                const textoResp = inputResp.value.trim();
+                                if (!textoResp) {
+                                    alert('Resposta não pode ser vazia');
+                                    return;
+                                }
+                                const respostasRef = ref(db, `comentarios/${key}/respostas`);
+                                const novaRespRef = push(respostasRef);
+                                set(novaRespRef, {
+                                    nome: usuarioAtual.displayName || 'Usuário',
+                                    texto: textoResp,
+                                    uid: usuarioAtual.uid,
+                                    foto: usuarioAtual.photoURL || '',
+                                    timestamp: Date.now()
+                                });
+                                form.remove();
+                            };
+                            form.appendChild(inputResp);
+                            form.appendChild(btnEnviarResp);
+                            li.appendChild(form);
+                        }
+                    };
+                    li.appendChild(btnReply);
+                }
+
+                // Listar respostas
+                if (item.respostas) {
+                    // Botão para mostrar/ocultar respostas
+                    const btnVerResp = document.createElement('button');
+                    btnVerResp.innerHTML = `<i class="fas fa-comments"></i> See answers (${Object.keys(item.respostas).length})`;
+                    btnVerResp.style = 'margin-left:10px;background:transparent;color:#555;border:1px solid #ccc;padding:3px 12px;border-radius:16px;cursor:pointer;font-size:0.95em;outline:none;';
+                    let respostasVisiveis = false;
+                    let ulResp = null;
+                    btnVerResp.onclick = () => {
+                        respostasVisiveis = !respostasVisiveis;
+                        if (respostasVisiveis) {
+                            if (!ulResp) {
+                                ulResp = document.createElement('ul');
+                                ulResp.style = 'margin-top:8px;margin-left:30px;background:#f9f9f9;padding:8px;border-radius:4px;';
+                                Object.entries(item.respostas).forEach(([k, resp]) => {
+                                    const liResp = document.createElement('li');
+                                    // Foto da resposta
+                                    if (resp.foto) {
+                                        const img = document.createElement('img');
+                                        img.src = resp.foto;
+                                        img.alt = resp.nome;
+                                        img.style = 'width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:6px;';
+                                        liResp.appendChild(img);
+                                    }
+                                    liResp.appendChild(document.createTextNode(`${resp.nome}: ${resp.texto}`));
+
+                                    // Editar/apagar resposta (apenas autor, menu 3 pontos)
+                                    if (usuarioAtual && usuarioAtual.uid === resp.uid) {
+                                        const menuResp = document.createElement('div');
+                                        menuResp.style = 'display:inline-block;position:relative;margin-left:8px;vertical-align:middle;';
+                                        const btnMenuResp = document.createElement('button');
+                                        btnMenuResp.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+                                        btnMenuResp.title = 'Mais opções';
+                                        btnMenuResp.style = 'background:transparent;color:#333;border:none;padding:2px 6px;border-radius:50%;cursor:pointer;font-size:1em;outline:none;';
+                                        menuResp.appendChild(btnMenuResp);
+                                        const dropdownResp = document.createElement('div');
+                                        dropdownResp.style = 'display:none;position:absolute;right:0;top:22px;z-index:10;background:#fff;border:1px solid #ccc;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);min-width:90px;';
+                                        // Editar
+                                        const optEditResp = document.createElement('button');
+                                        optEditResp.textContent = 'Edit';
+                                        optEditResp.style = 'display:block;width:100%;background:none;border:none;padding:7px 10px;text-align:left;color:#333;font-size:0.95em;cursor:pointer;border-radius:6px 6px 0 0;';
+                                        optEditResp.onmouseover = () => optEditResp.style.background = '#f2f2f2';
+                                        optEditResp.onmouseout = () => optEditResp.style.background = 'none';
+                                        optEditResp.onclick = () => {
+                                            dropdownResp.style.display = 'none';
+                                            if (liResp.querySelector('.edit-form')) return;
+                                            const form = document.createElement('div');
+                                            form.className = 'edit-form';
+                                            const inputEdit = document.createElement('textarea');
+                                            inputEdit.value = resp.texto;
+                                            inputEdit.style = 'width:100%;margin-bottom:4px;';
+                                            const btnSalvar = document.createElement('button');
+                                            btnSalvar.textContent = 'Salvar';
+                                            btnSalvar.style = 'background:#2E8B57;color:white;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:0.85em;';
+                                            btnSalvar.onclick = () => {
+                                                const novoTexto = inputEdit.value.trim();
+                                                if (!novoTexto) { alert('Resposta não pode ser vazia'); return; }
+                                                set(ref(db, `comentarios/${key}/respostas/${k}/texto`), novoTexto);
+                                                form.remove();
+                                            };
+                                            form.appendChild(inputEdit);
+                                            form.appendChild(btnSalvar);
+                                            liResp.appendChild(form);
+                                        };
+                                        dropdownResp.appendChild(optEditResp);
+                                        // Apagar
+                                        const optDelResp = document.createElement('button');
+                                        optDelResp.textContent = 'Delete';
+                                        optDelResp.style = 'display:block;width:100%;background:none;border:none;padding:7px 10px;text-align:left;color:#dc3545;font-size:0.95em;cursor:pointer;border-radius:0 0 6px 6px;';
+                                        optDelResp.onmouseover = () => optDelResp.style.background = '#fbeaea';
+                                        optDelResp.onmouseout = () => optDelResp.style.background = 'none';
+                                        optDelResp.onclick = () => {
+                                            dropdownResp.style.display = 'none';
+                                            if (confirm('Tem certeza que deseja apagar esta resposta?')) {
+                                                set(ref(db, `comentarios/${key}/respostas/${k}`), null);
+                                            }
+                                        };
+                                        dropdownResp.appendChild(optDelResp);
+                                        menuResp.appendChild(dropdownResp);
+                                        btnMenuResp.onclick = (e) => {
+                                            e.stopPropagation();
+                                            dropdownResp.style.display = dropdownResp.style.display === 'block' ? 'none' : 'block';
+                                        };
+                                        document.addEventListener('click', function fecharMenuResp(e) {
+                                            if (!menuResp.contains(e.target)) dropdownResp.style.display = 'none';
+                                        });
+                                        liResp.appendChild(menuResp);
+                                    }
+                                    ulResp.appendChild(liResp);
+                                });
+                                li.appendChild(ulResp);
+                            }
+                            ulResp.style.display = 'block';
+                            btnVerResp.innerHTML = `<i class=\"fas fa-comments\"></i> Hide answers`;
+                        } else {
+                            if (ulResp) ulResp.style.display = 'none';
+                            btnVerResp.innerHTML = `<i class=\"fas fa-comments\"></i> See answers (${Object.keys(item.respostas).length})`;
+                        }
+                    };
+                    li.appendChild(btnVerResp);
+                }
+                listaComentarios.appendChild(li);
+            });
+        });
+    </script>
 </body>
+
 </html>

@@ -484,41 +484,351 @@ dev.off()</code></pre>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
     import { getDatabase, ref, push, set, onValue, query, orderByChild } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+    import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyB2-3Shi8jr4Ztt2GGIHQyUsK5WsP1Zkq0",
       authDomain: "comentariossamambaias.firebaseapp.com",
       databaseURL: "https://comentariossamambaias-default-rtdb.firebaseio.com",
       projectId: "comentariossamambaias",
-      storageBucket: "comentariossamambaias.appspot.com",
+      storageBucket: "comentariossamambaias.firebasestorage.app",
       messagingSenderId: "487696893641",
-      appId: "1:487696893641:web:3c3996aa83ee82c24d2f18"
+      appId: "1:487696893641:web:3c3996aa83ee82c24d2f18",
+      measurementId: "G-CVHRVJYW2C"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
+    const auth = getAuth(app);
     const comentariosRef = ref(db, 'comentarios');
 
-    document.getElementById('btnEnviar').addEventListener('click', () => {
-      const nome = document.getElementById('nome').value.trim();
-      const texto = document.getElementById('comentario').value.trim();
-      if (!nome || !texto) return alert('Please fill in name and comment');
+    // Elementos
+    const btnEnviar = document.getElementById('btnEnviar');
+    const btnLogin = document.createElement('button');
+    btnLogin.textContent = 'Login with Google';
+    btnLogin.style = 'background:#4285F4;color:white;border:none;padding:10px 15px;border-radius:5px;cursor:pointer;margin-bottom:10px;display:block;';
+    const btnLogout = document.createElement('button');
+    btnLogout.textContent = 'Logout';
+    btnLogout.style = 'background:#aaa;color:white;border:none;padding:8px 12px;border-radius:5px;cursor:pointer;margin-left:10px;';
+    const comentariosDiv = document.getElementById('comentarios');
+    const nomeInput = document.getElementById('nome');
+    const comentarioInput = document.getElementById('comentario');
 
-      const novoComentario = push(comentariosRef);
-      set(novoComentario, { nome, texto, timestamp: Date.now() });
-      document.getElementById('nome').value = '';
-      document.getElementById('comentario').value = '';
+    // Adiciona botão de login antes do campo nome
+    nomeInput.parentNode.insertBefore(btnLogin, nomeInput);
+
+    // Estado de autenticação
+    let usuarioAtual = null;
+    onAuthStateChanged(auth, (user) => {
+        usuarioAtual = user;
+        if (user) {
+            btnLogin.style.display = 'none';
+            btnLogout.style.display = 'inline-block';
+            nomeInput.value = user.displayName || '';
+            nomeInput.disabled = true;
+            if (!btnLogout.parentNode) btnLogin.parentNode.insertBefore(btnLogout, btnLogin.nextSibling);
+        } else {
+            btnLogin.style.display = 'block';
+            btnLogout.style.display = 'none';
+            nomeInput.value = '';
+            nomeInput.disabled = false;
+        }
     });
 
-    onValue(query(comentariosRef, orderByChild('timestamp')), (snapshot) => {
-      const lista = document.getElementById('lista-comentarios');
-      lista.innerHTML = '';
-      snapshot.forEach(child => {
-        const { nome, texto } = child.val();
-        const li = document.createElement('li');
-        li.textContent = `${nome}: ${texto}`;
-        lista.appendChild(li);
-      });
+    btnLogin.onclick = () => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider).catch(e => alert('Erro ao autenticar: ' + e.message));
+    };
+    btnLogout.onclick = () => signOut(auth);
+
+    // Envio de comentário exige login
+    const enviarComentario = () => {
+        const texto = comentarioInput.value.trim();
+        if (!usuarioAtual) {
+            alert('You must be logged in to comment!');
+            return;
+        }
+        if (!texto) {
+            alert('Please write a comment');
+            return;
+        }
+        const novoComentarioRef = push(comentariosRef);
+        set(novoComentarioRef, {
+            nome: usuarioAtual.displayName || 'Usuário',
+            texto: texto,
+            uid: usuarioAtual.uid,
+            foto: usuarioAtual.photoURL || '',
+            timestamp: Date.now()
+        });
+        comentarioInput.value = '';
+    };
+    btnEnviar.onclick = enviarComentario;
+
+    // Listar comentários
+    const listaComentarios = document.getElementById('lista-comentarios');
+    const comentariosOrdenados = query(comentariosRef, orderByChild('timestamp'));
+    onValue(comentariosOrdenados, (snapshot) => {
+        listaComentarios.innerHTML = '';
+        snapshot.forEach(childSnapshot => {
+            const item = childSnapshot.val();
+            const key = childSnapshot.key;
+            const li = document.createElement('li');
+            // Mostra foto se disponível
+            if (item.foto) {
+                const img = document.createElement('img');
+                img.src = item.foto;
+                img.alt = item.nome;
+                img.style = 'width:24px;height:24px;border-radius:50%;vertical-align:middle;margin-right:6px;';
+                li.appendChild(img);
+            }
+            // Texto do comentário
+            const spanTexto = document.createElement('span');
+            spanTexto.textContent = `${item.nome}: ${item.texto}`;
+            li.appendChild(spanTexto);
+
+            // Botão Curtir (apenas logado, visual moderno)
+            if (usuarioAtual) {
+                const userId = usuarioAtual.uid;
+                const jaCurtiu = item.likes && item.likes[userId];
+                const btnLike = document.createElement('button');
+                btnLike.innerHTML = `<i class="fa${jaCurtiu ? 's' : 'r'} fa-heart" style="color:${jaCurtiu ? '#2E8B57' : '#888'};margin-right:4px;"></i> <span style="vertical-align:middle;">${item.likes ? Object.keys(item.likes).length : 0}</span>`;
+                btnLike.title = jaCurtiu ? 'Unlike' : 'Like';
+                btnLike.style = 'margin-left:10px;background:transparent;color:#333;border:none;padding:4px 10px;border-radius:20px;cursor:pointer;font-size:1.1em;transition:background 0.2s;outline:none;';
+                btnLike.onmouseover = () => btnLike.style.background = '#eafaf1';
+                btnLike.onmouseout = () => btnLike.style.background = 'transparent';
+                btnLike.onclick = () => {
+                    const likeRef = ref(db, `comentarios/${key}/likes/${userId}`);
+                    if (btnLike.classList.contains('liked')) {
+                        set(likeRef, null);
+                    } else {
+                        set(likeRef, true);
+                    }
+                };
+                if (jaCurtiu) {
+                    btnLike.classList.add('liked');
+                } else {
+                    btnLike.classList.remove('liked');
+                }
+                li.appendChild(btnLike);
+            }
+
+            // Botão Editar (apenas autor)
+            if (usuarioAtual && usuarioAtual.uid === item.uid) {
+                // Menu de três pontos
+                const menuWrapper = document.createElement('div');
+                menuWrapper.style = 'display:inline-block;position:relative;margin-left:8px;vertical-align:middle;';
+                const btnMenu = document.createElement('button');
+                btnMenu.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+                btnMenu.title = 'Mais opções';
+                btnMenu.style = 'background:transparent;color:#333;border:none;padding:4px 8px;border-radius:50%;cursor:pointer;font-size:1.2em;outline:none;';
+                menuWrapper.appendChild(btnMenu);
+                // Dropdown
+                const dropdown = document.createElement('div');
+                dropdown.style = 'display:none;position:absolute;right:0;top:28px;z-index:10;background:#fff;border:1px solid #ccc;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);min-width:110px;';
+                // Editar
+                const optEdit = document.createElement('button');
+                optEdit.textContent = 'Edit';
+                optEdit.style = 'display:block;width:100%;background:none;border:none;padding:8px 12px;text-align:left;color:#333;font-size:1em;cursor:pointer;border-radius:6px 6px 0 0;';
+                optEdit.onmouseover = () => optEdit.style.background = '#f2f2f2';
+                optEdit.onmouseout = () => optEdit.style.background = 'none';
+                optEdit.onclick = () => {
+                    dropdown.style.display = 'none';
+                    if (li.querySelector('.edit-form')) return;
+                    const form = document.createElement('div');
+                    form.className = 'edit-form';
+                    const inputEdit = document.createElement('textarea');
+                    inputEdit.value = item.texto;
+                    inputEdit.style = 'width:100%;margin-bottom:4px;';
+                    const btnSalvar = document.createElement('button');
+                    btnSalvar.textContent = 'Salvar';
+                    btnSalvar.style = 'background:#2E8B57;color:white;border:none;padding:4px 10px;border-radius:4px;cursor:pointer;font-size:0.9em;';
+                    btnSalvar.onclick = () => {
+                        const novoTexto = inputEdit.value.trim();
+                        if (!novoTexto) { alert('Comentário não pode ser vazio'); return; }
+                        set(ref(db, `comentarios/${key}/texto`), novoTexto);
+                        form.remove();
+                    };
+                    form.appendChild(inputEdit);
+                    form.appendChild(btnSalvar);
+                    li.appendChild(form);
+                };
+                dropdown.appendChild(optEdit);
+                // Apagar
+                const optDel = document.createElement('button');
+                optDel.textContent = 'Delete';
+                optDel.style = 'display:block;width:100%;background:none;border:none;padding:8px 12px;text-align:left;color:#dc3545;font-size:1em;cursor:pointer;border-radius:0 0 6px 6px;';
+                optDel.onmouseover = () => optDel.style.background = '#fbeaea';
+                optDel.onmouseout = () => optDel.style.background = 'none';
+                optDel.onclick = () => {
+                    dropdown.style.display = 'none';
+                    if (confirm('Tem certeza que deseja apagar este comentário?')) {
+                        set(ref(db, `comentarios/${key}`), null);
+                    }
+                };
+                dropdown.appendChild(optDel);
+                menuWrapper.appendChild(dropdown);
+                btnMenu.onclick = (e) => {
+                    e.stopPropagation();
+                    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                };
+                // Fecha dropdown ao clicar fora
+                document.addEventListener('click', function fecharMenu(e) {
+                    if (!menuWrapper.contains(e.target)) dropdown.style.display = 'none';
+                });
+                li.appendChild(menuWrapper);
+            }
+
+            // Botão Responder (apenas logado)
+            // Só mostra o botão Responder estilizado se não for o autor do comentário
+            if (usuarioAtual && usuarioAtual.uid !== item.uid) {
+                const btnReply = document.createElement('button');
+                btnReply.innerHTML = '<i class="fas fa-comment-dots"></i>';
+
+                btnReply.title = 'Comment';
+                btnReply.style = 'margin-left:10px;background:transparent;color:#2E8B57;border:1px solid #2E8B57;padding:4px 10px;border-radius:50%;cursor:pointer;font-size:1.15em;transition:background 0.2s;outline:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;';
+                btnReply.onmouseover = () => btnReply.style.background = '#eafaf1';
+                btnReply.onmouseout = () => btnReply.style.background = 'transparent';
+                btnReply.onclick = () => {
+                    const existingForm = li.querySelector('.resposta-form');
+                    if (existingForm) {
+                        existingForm.remove();
+                    } else {
+                        const form = document.createElement('div');
+                        form.className = 'resposta-form';
+                        const inputResp = document.createElement('textarea');
+                        inputResp.placeholder = 'Your answer';
+                        inputResp.style = 'margin-bottom:4px;width:100%;border-radius:6px;border:1px solid #ccc;padding:6px;';
+                        const btnEnviarResp = document.createElement('button');
+                        btnEnviarResp.textContent = 'To send';
+                        btnEnviarResp.style = 'background:#2E8B57;color:white;border:none;padding:4px 14px;border-radius:6px;cursor:pointer;font-size:0.95em;margin-top:4px;';
+                        btnEnviarResp.onclick = () => {
+                            const textoResp = inputResp.value.trim();
+                            if (!textoResp) {
+                                alert('Resposta não pode ser vazia');
+                                return;
+                            }
+                            const respostasRef = ref(db, `comentarios/${key}/respostas`);
+                            const novaRespRef = push(respostasRef);
+                            set(novaRespRef, {
+                                nome: usuarioAtual.displayName || 'Usuário',
+                                texto: textoResp,
+                                uid: usuarioAtual.uid,
+                                foto: usuarioAtual.photoURL || '',
+                                timestamp: Date.now()
+                            });
+                            form.remove();
+                        };
+                        form.appendChild(inputResp);
+                        form.appendChild(btnEnviarResp);
+                        li.appendChild(form);
+                    }
+                };
+                li.appendChild(btnReply);
+            }
+
+            // Listar respostas
+            if (item.respostas) {
+                // Botão para mostrar/ocultar respostas
+                const btnVerResp = document.createElement('button');
+                btnVerResp.innerHTML = `<i class="fas fa-comments"></i> See answers (${Object.keys(item.respostas).length})`;
+                btnVerResp.style = 'margin-left:10px;background:transparent;color:#555;border:1px solid #ccc;padding:3px 12px;border-radius:16px;cursor:pointer;font-size:0.95em;outline:none;';
+                let respostasVisiveis = false;
+                let ulResp = null;
+                btnVerResp.onclick = () => {
+                    respostasVisiveis = !respostasVisiveis;
+                    if (respostasVisiveis) {
+                        if (!ulResp) {
+                            ulResp = document.createElement('ul');
+                            ulResp.style = 'margin-top:8px;margin-left:30px;background:#f9f9f9;padding:8px;border-radius:4px;';
+                            Object.entries(item.respostas).forEach(([k, resp]) => {
+                                const liResp = document.createElement('li');
+                                // Foto da resposta
+                                if (resp.foto) {
+                                    const img = document.createElement('img');
+                                    img.src = resp.foto;
+                                    img.alt = resp.nome;
+                                    img.style = 'width:20px;height:20px;border-radius:50%;vertical-align:middle;margin-right:6px;';
+                                    liResp.appendChild(img);
+                                }
+                                liResp.appendChild(document.createTextNode(`${resp.nome}: ${resp.texto}`));
+
+                                // Editar/apagar resposta (apenas autor, menu 3 pontos)
+                                if (usuarioAtual && usuarioAtual.uid === resp.uid) {
+                                    const menuResp = document.createElement('div');
+                                    menuResp.style = 'display:inline-block;position:relative;margin-left:8px;vertical-align:middle;';
+                                    const btnMenuResp = document.createElement('button');
+                                    btnMenuResp.innerHTML = '<i class="fas fa-ellipsis-v"></i>';
+                                    btnMenuResp.title = 'Mais opções';
+                                    btnMenuResp.style = 'background:transparent;color:#333;border:none;padding:2px 6px;border-radius:50%;cursor:pointer;font-size:1em;outline:none;';
+                                    menuResp.appendChild(btnMenuResp);
+                                    const dropdownResp = document.createElement('div');
+                                    dropdownResp.style = 'display:none;position:absolute;right:0;top:22px;z-index:10;background:#fff;border:1px solid #ccc;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,0.08);min-width:90px;';
+                                    // Editar
+                                    const optEditResp = document.createElement('button');
+                                    optEditResp.textContent = 'Edit';
+                                    optEditResp.style = 'display:block;width:100%;background:none;border:none;padding:7px 10px;text-align:left;color:#333;font-size:0.95em;cursor:pointer;border-radius:6px 6px 0 0;';
+                                    optEditResp.onmouseover = () => optEditResp.style.background = '#f2f2f2';
+                                    optEditResp.onmouseout = () => optEditResp.style.background = 'none';
+                                    optEditResp.onclick = () => {
+                                        dropdownResp.style.display = 'none';
+                                        if (liResp.querySelector('.edit-form')) return;
+                                        const form = document.createElement('div');
+                                        form.className = 'edit-form';
+                                        const inputEdit = document.createElement('textarea');
+                                        inputEdit.value = resp.texto;
+                                        inputEdit.style = 'width:100%;margin-bottom:4px;';
+                                        const btnSalvar = document.createElement('button');
+                                        btnSalvar.textContent = 'Salvar';
+                                        btnSalvar.style = 'background:#2E8B57;color:white;border:none;padding:2px 8px;border-radius:4px;cursor:pointer;font-size:0.85em;';
+                                        btnSalvar.onclick = () => {
+                                            const novoTexto = inputEdit.value.trim();
+                                            if (!novoTexto) { alert('Resposta não pode ser vazia'); return; }
+                                            set(ref(db, `comentarios/${key}/respostas/${k}/texto`), novoTexto);
+                                            form.remove();
+                                        };
+                                        form.appendChild(inputEdit);
+                                        form.appendChild(btnSalvar);
+                                        liResp.appendChild(form);
+                                    };
+                                    dropdownResp.appendChild(optEditResp);
+                                    // Apagar
+                                    const optDelResp = document.createElement('button');
+                                    optDelResp.textContent = 'Delete';
+                                    optDelResp.style = 'display:block;width:100%;background:none;border:none;padding:7px 10px;text-align:left;color:#dc3545;font-size:0.95em;cursor:pointer;border-radius:0 0 6px 6px;';
+                                    optDelResp.onmouseover = () => optDelResp.style.background = '#fbeaea';
+                                    optDelResp.onmouseout = () => optDelResp.style.background = 'none';
+                                    optDelResp.onclick = () => {
+                                        dropdownResp.style.display = 'none';
+                                        if (confirm('Tem certeza que deseja apagar esta resposta?')) {
+                                            set(ref(db, `comentarios/${key}/respostas/${k}`), null);
+                                        }
+                                    };
+                                    dropdownResp.appendChild(optDelResp);
+                                    menuResp.appendChild(dropdownResp);
+                                    btnMenuResp.onclick = (e) => {
+                                        e.stopPropagation();
+                                        dropdownResp.style.display = dropdownResp.style.display === 'block' ? 'none' : 'block';
+                                    };
+                                    document.addEventListener('click', function fecharMenuResp(e) {
+                                        if (!menuResp.contains(e.target)) dropdownResp.style.display = 'none';
+                                    });
+                                    liResp.appendChild(menuResp);
+                                }
+                                ulResp.appendChild(liResp);
+                            });
+                            li.appendChild(ulResp);
+                        }
+                        ulResp.style.display = 'block';
+                        btnVerResp.innerHTML = `<i class=\"fas fa-comments\"></i> Hide answers`;
+                    } else {
+                        if (ulResp) ulResp.style.display = 'none';
+                        btnVerResp.innerHTML = `<i class=\"fas fa-comments\"></i> See answers (${Object.keys(item.respostas).length})`;
+                    }
+                };
+                li.appendChild(btnVerResp);
+            }
+            listaComentarios.appendChild(li);
+        });
     });
   </script>
 </body>
