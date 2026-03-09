@@ -297,10 +297,8 @@ figcaption {
 
     <div class="installation-steps">
       <div class="step">
-        <h4>Script R: Download of Incidents and Images</h4>
-        <pre><code># ========================================================================
-# 1. LOAD PACKAGES
-# ========================================================================
+        <h4>Step 1 - Load required packages</h4>
+        <pre><code># Install packages (run only once)
 # install.packages(c("rgbif", "dplyr", "stringr", "purrr", "openxlsx", "finch"))
 
 library(rgbif)     # Interface to the GBIF API – download occurrence data and metadata
@@ -308,43 +306,57 @@ library(dplyr)     # Data manipulation (filter, select, mutate, join, summarize,
 library(stringr)   # String processing and text cleaning functions
 library(purrr)     # Functional programming tools (loops, mapping functions)
 library(openxlsx)  # Export data frames to Excel (.xlsx) files without Java dependency
-library(finch)     # Read Darwin Core Archive (DWCA) files directly from GBIF (.zip)
+library(finch)     # Read Darwin Core Archive (DWCA) files directly from GBIF (.zip)</code></pre>
+      </div>
 
-# ========================================================================
-# 2. DEFINE WORKING DIRECTORY AND TAXON
-# ========================================================================
-
-# Set main directory for Microgramma mauritiana files
+      <div class="step">
+        <h4>Step 2 - Define working directory and taxon</h4>
+        <pre><code># Set main directory for your species files
 setwd("C:/Users/nikso/OneDrive/Academic_and_Personal_Life_Niksoney/Articles_and_Collaborations/_Microgramma_mauritiana")
 
 # Retrieve taxonKey from GBIF backbone taxonomy
 name_backbone(name = "Microgramma mauritiana")
 
+# The previous command will display a numerical sequence in the console that corresponds to your search.
 # Insert the taxonKey here
-key <- 4026159
+key <- 4026159</code></pre>
+      </div>
 
-# ========================================================================
-# 3. DOWNLOAD DWCA FROM GBIF
-# ========================================================================
-
-# Request DWCA download (required to access multimedia metadata)
+      <div class="step">
+        <h4>Step 3 - Download DWCA from GBIF</h4>
+        <pre><code># Request DWCA download (required to access multimedia metadata)
 dl <- occ_download(
   pred("taxonKey", key),
-  format = "DWCA"
+  format = "DWCA",
+  user = "XXXXXXXXXX",      # Add your GBIF username
+  pwd = "XXXXXXXXXX",       # Add your GBIF password
+  email = "XXXXXXXXXX"      # Add your email
 )
 
-# Check download status (PREPARING, RUNNING, SUCCEEDED, FAILED)
-occ_download_meta(dl)
+# Monitoring loop (R will keep running until finished)
+cat("GBIF is processing your data request...\n")
+repeat {
+  status <- occ_download_meta(dl)$status
+  if (status == "SUCCEEDED") {
+    cat("\n✅ Finished! The file is now available for download.\n")
+    break
+  } else if (status == "FAILED") {
+    stop("\n❌ An error occurred on the GBIF server.")
+  } else {
+    cat(".", append = TRUE) # Displays dots while waiting
+    Sys.sleep(10) # Waits 10 seconds before requesting from the server again
+  }
+}
 
-# Download generated file
+# Download the generated file
 file <- occ_download_get(dl)
+cat("Download finished and file saved.\n")</code></pre>
+      </div>
 
-# ========================================================================
-# 4. READ DWCA FILE (GBIF ZIP)
-# ========================================================================
-
-# Manually unzip downloaded file
-unzip("0006490-260226173443078.zip", exdir = "gbif_dwca")
+      <div class="step">
+        <h4>Step 4 - Read DWCA file (GBIF ZIP)</h4>
+        <pre><code># Manually unzip downloaded file
+unzip("0006490-260226173443078.zip", exdir = "gbif_dwca")  # Replace with your file name
 
 # Read occurrence.txt (Occurrence data)
 occ <- read.delim(
@@ -362,25 +374,24 @@ media <- read.delim(
   quote = "",
   fill = TRUE,
   stringsAsFactors = FALSE
-)
+)</code></pre>
+      </div>
 
-# ========================================================================
-# 5. SUMMARY STATISTICS
-# ========================================================================
-
+      <div class="step">
+        <h4>Step 5 - Summary statistics and data exploration</h4>
+        <pre><code># Check data summary
 cat("Total occurrences:", nrow(occ), "\n")
 cat("Total media records:", nrow(media), "\n")
 cat("Number of images (StillImage):", 
     sum(media$type == "StillImage", na.rm = TRUE), "\n")
 
 # Check media type diversity
-table(media$type)
+table(media$type)</code></pre>
+      </div>
 
-# ========================================================================
-# 6. FILTER AND PROCESS IMAGE RECORDS
-# ========================================================================
-
-# Filter image records
+      <div class="step">
+        <h4>Step 6 - Filter and process image records</h4>
+        <pre><code># Filter only image records
 media_img <- media[media$type == "StillImage", ]
 
 # Identify unique GBIF IDs with images
@@ -391,24 +402,23 @@ df <- occ
 df$hasImage <- ifelse(df$gbifID %in% ids_img, "YES", "NO")
 
 # Move column to the beginning for easier inspection
-df <- df %>% relocate(hasImage)
+df <- df %>% relocate(hasImage)</code></pre>
+      </div>
 
-# ========================================================================
-# 7. EXPORT OUTPUT FILES
-# ========================================================================
-
+      <div class="step">
+        <h4>Step 7 - Export data files</h4>
+        <pre><code># Export processed data to CSV and Excel formats
 write.csv(df, "Microgramma_mauritiana_GBIF.csv", row.names = FALSE)
-write.xlsx(df, "Microgramma_mauritiana_GBIF.xlsx")
+write.xlsx(df, "Microgramma_mauritiana_GBIF.xlsx")</code></pre>
+      </div>
 
-# ========================================================================
-# 8. PREPARE IMAGE DOWNLOAD
-# ========================================================================
-
-# Merge occurrence data with image metadata
+      <div class="step">
+        <h4>Step 8 - Prepare image download</h4>
+        <pre><code># Merge occurrence data with image metadata
 df_img <- occ %>%
   inner_join(media_img, by = "gbifID")
 
-# Create output folder
+# Create output folder for images
 dir.create("images", showWarnings = FALSE)
 
 # Function to sanitize file names (Windows compatible)
@@ -423,13 +433,12 @@ sanitize_name <- function(x) {
 # Helper function to handle NA values
 handle_na <- function(x) {
   if (is.na(x) || x == "") return("NA") else return(x)
-}
+}</code></pre>
+      </div>
 
-# ========================================================================
-# 9. CORE DOWNLOAD AND RENAME FUNCTION
-# ========================================================================
-
-download_image <- function(i) {
+      <div class="step">
+        <h4>Step 9 - Core download and rename function</h4>
+        <pre><code>download_image <- function(i) {
   
   url <- df_img$identifier[i]
   
@@ -464,23 +473,20 @@ download_image <- function(i) {
     download.file(url, filepath, mode = "wb", quiet = TRUE),
     silent = TRUE
   )
-}
+}</code></pre>
+      </div>
 
-# ========================================================================
-# 10. RUN IMAGE DOWNLOAD LOOP
-# ========================================================================
-
-cat("Starting image download...\n")
+      <div class="step">
+        <h4>Step 10 - Run image download loop</h4>
+        <pre><code>cat("Starting image download...\n")
 
 for (i in seq_len(nrow(df_img))) {
   cat("Downloading image", i, "of", nrow(df_img), "\r")
   download_image(i)
 }
 
-cat("\nDownload completed successfully!\n")
-</code>
-</pre>
-</div>
+cat("\nDownload completed successfully!\n")</code></pre>
+      </div>
     </div>
 
     <div class="tips">
