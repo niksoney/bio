@@ -1,3 +1,0 @@
-git add .
-git commit -m "Minhas edições no site"
-git push
